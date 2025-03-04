@@ -12,7 +12,7 @@ export default function SelectorOption({ index }: { index: number }) {
   function getOpacity(index: number) {
     // Full opacity for all window directionCount/2 away, quadratic falloff after that
     const distance = Math.abs(selectedItem - index);
-    const linearFalloff = 2 / directionCount * (1 - distance) + 2;
+    const linearFalloff = 2 / directionCount * (1 - distance) + 2.2;
     return Math.pow(Math.max(linearFalloff, 0), 2);
   }
 
@@ -43,6 +43,7 @@ export default function SelectorOption({ index }: { index: number }) {
         left: `${x}px`,
         top: `${y}px`,
         opacity,
+        transform: `scale(${.9 + 0.05 * (index - selectedItem)})`,
       }}
     >
       <img src={`${echoes[index].image}`} alt={echoes[index].name} />
