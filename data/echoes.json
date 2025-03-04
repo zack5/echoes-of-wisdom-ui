@@ -1,0 +1,510 @@
+[
+  {
+    "name": "Table",
+    "cost": 1
+  },
+  {
+    "name": "Old bed",
+    "cost": 1
+  },
+  {
+    "name": "Soft Bed",
+    "cost": 2
+  },
+  {
+    "name": "Zelda's Bed",
+    "cost": 3
+  },
+  {
+    "name": "Decorative Shrub",
+    "cost": 1
+  },
+  {
+    "name": "Wooden Box",
+    "cost": 1
+  },
+  {
+    "name": "Pot",
+    "cost": 1
+  },
+  {
+    "name": "Hyrule Castle Pot",
+    "cost": 1
+  },
+  {
+    "name": "Gerudo Pot",
+    "cost": 1
+  },
+  {
+    "name": "Boulder",
+    "cost": 1
+  },
+  {
+    "name": "Rock",
+    "cost": 1
+  },
+  {
+    "name": "Lava Rock",
+    "cost": 4
+  },
+  {
+    "name": "Ice Block",
+    "cost": 1
+  },
+  {
+    "name": "Snowball",
+    "cost": 2
+  },
+  {
+    "name": "Sign",
+    "cost": 1
+  },
+  {
+    "name": "Grilled Fish",
+    "cost": 1
+  },
+  {
+    "name": "Meat",
+    "cost": 1
+  },
+  {
+    "name": "Rock Roast",
+    "cost": 1
+  },
+  {
+    "name": "Stuffed Toy",
+    "cost": 1
+  },
+  {
+    "name": "Carrot",
+    "cost": 1
+  },
+  {
+    "name": "Water Block",
+    "cost": 1
+  },
+  {
+    "name": "Elephant Statue",
+    "cost": 1
+  },
+  {
+    "name": "Hawk Statue",
+    "cost": 1
+  },
+  {
+    "name": "Cat Statue",
+    "cost": 1
+  },
+  {
+    "name": "Snake Statue",
+    "cost": 1
+  },
+  {
+    "name": "Ancient Orb",
+    "cost": 1
+  },
+  {
+    "name": "Trampoline",
+    "cost": 1
+  },
+  {
+    "name": "Wind Cannon",
+    "cost": 2
+  },
+  {
+    "name": "Flying Tile",
+    "cost": 3
+  },
+  {
+    "name": "Cloud",
+    "cost": 2
+  },
+  {
+    "name": "Spiked Roller",
+    "cost": 4
+  },
+  {
+    "name": "Beetle Mound",
+    "cost": 3
+  },
+  {
+    "name": "Firework",
+    "cost": 2
+  },
+  {
+    "name": "Brazier",
+    "cost": 2
+  },
+  {
+    "name": "Zol",
+    "cost": 1
+  },
+  {
+    "name": "Ignizol",
+    "cost": 2
+  },
+  {
+    "name": "Hydrozol",
+    "cost": 2
+  },
+  {
+    "name": "Buzz Blob",
+    "cost": 3
+  },
+  {
+    "name": "Spear Moblin",
+    "cost": 2
+  },
+  {
+    "name": "Spear Moblin Lv. 2",
+    "cost": 4
+  },
+  {
+    "name": "Sword Moblin",
+    "cost": 2
+  },
+  {
+    "name": "Sword Moblin Lv. 2",
+    "cost": 4
+  },
+  {
+    "name": "Sword Moblin Lv. 3",
+    "cost": 5
+  },
+  {
+    "name": "Club Boarblin",
+    "cost": 2
+  },
+  {
+    "name": "Club Boarblin Lv. 2",
+    "cost": 4
+  },
+  {
+    "name": "Boomerang Boarblin",
+    "cost": 2
+  },
+  {
+    "name": "Boomerang Boarblin Lv. 2",
+    "cost": 4
+  },
+  {
+    "name": "Lynel",
+    "cost": 6
+  },
+  {
+    "name": "Lizalfos",
+    "cost": 3
+  },
+  {
+    "name": "Lizalfos Lv. 2",
+    "cost": 4
+  },
+  {
+    "name": "Lizalfos Lv. 3",
+    "cost": 5
+  },
+  {
+    "name": "Darknut",
+    "cost": 3
+  },
+  {
+    "name": "Darknut Lv. 2",
+    "cost": 4
+  },
+  {
+    "name": "Darknut Lv. 3",
+    "cost": 5
+  },
+  {
+    "name": "Armos",
+    "cost": 2
+  },
+  {
+    "name": "Ball-and-Chain Trooper",
+    "cost": 4
+  },
+  {
+    "name": "Gibdo",
+    "cost": ""
+  },
+  {
+    "name": "Gibdo Lv. 2",
+    "cost": ""
+  },
+  {
+    "name": "ReDead",
+    "cost": ""
+  },
+  {
+    "name": "Fire Wizzrobe",
+    "cost": 5
+  },
+  {
+    "name": "Ice Wizzrobe",
+    "cost": 5
+  },
+  {
+    "name": "Electric Wizzrobe",
+    "cost": 5
+  },
+  {
+    "name": "Caromadillo",
+    "cost": ""
+  },
+  {
+    "name": "Caromadillo Lv. 2",
+    "cost": ""
+  },
+  {
+    "name": "Rope",
+    "cost": ""
+  },
+  {
+    "name": "Tornando",
+    "cost": ""
+  },
+  {
+    "name": "Ribbitune",
+    "cost": ""
+  },
+  {
+    "name": "Drippitune",
+    "cost": ""
+  },
+  {
+    "name": "Torch Slug",
+    "cost": 3
+  },
+  {
+    "name": "Freeze Slug",
+    "cost": 3
+  },
+  {
+    "name": "Holmill",
+    "cost": 3
+  },
+  {
+    "name": "Wolfos",
+    "cost": 3
+  },
+  {
+    "name": "White Wolfos",
+    "cost": 5
+  },
+  {
+    "name": "Keese",
+    "cost": 1
+  },
+  {
+    "name": "Fire Keese",
+    "cost": 4
+  },
+  {
+    "name": "Ice Keese",
+    "cost": 4
+  },
+  {
+    "name": "Electric Keese",
+    "cost": 4
+  },
+  {
+    "name": "Mothula",
+    "cost": 3
+  },
+  {
+    "name": "Mothula Lv. 2",
+    "cost": 5
+  },
+  {
+    "name": "Needlefly",
+    "cost": 2
+  },
+  {
+    "name": "Albatrawl",
+    "cost": 2
+  },
+  {
+    "name": "Crow",
+    "cost": 2
+  },
+  {
+    "name": "Beakon",
+    "cost": 3
+  },
+  {
+    "name": "Guay",
+    "cost": 3
+  },
+  {
+    "name": "Octorok",
+    "cost": 1
+  },
+  {
+    "name": "Fire Octo",
+    "cost": 2
+  },
+  {
+    "name": "Ice Octo",
+    "cost": 2
+  },
+  {
+    "name": "Sea Urchin",
+    "cost": 1
+  },
+  {
+    "name": "Sand Crab",
+    "cost": 1
+  },
+  {
+    "name": "Biri",
+    "cost": 2
+  },
+  {
+    "name": "Tangler",
+    "cost": 1
+  },
+  {
+    "name": "Tangler Lv. 2",
+    "cost": 2
+  },
+  {
+    "name": "Bombfish",
+    "cost": 4
+  },
+  {
+    "name": "Chompfin",
+    "cost": 4
+  },
+  {
+    "name": "Piranha",
+    "cost": 2
+  },
+  {
+    "name": "Sand Piranha",
+    "cost": 2
+  },
+  {
+    "name": "Deku Baba",
+    "cost": 2
+  },
+  {
+    "name": "Bio Deku Baba",
+    "cost": 3
+  },
+  {
+    "name": "Deku Baba Lv. 2",
+    "cost": 3
+  },
+  {
+    "name": "Peahat",
+    "cost": 3
+  },
+  {
+    "name": "Giant Goponga Flower",
+    "cost": 4
+  },
+  {
+    "name": "Zirro",
+    "cost": 3
+  },
+  {
+    "name": "Ghirro",
+    "cost": 2
+  },
+  {
+    "name": "Mini-Moldorm",
+    "cost": 2
+  },
+  {
+    "name": "Strandtula",
+    "cost": 2
+  },
+  {
+    "name": "Crawltula",
+    "cost": 3
+  },
+  {
+    "name": "Baby Gohma",
+    "cost": 2
+  },
+  {
+    "name": "Beetle",
+    "cost": 1
+  },
+  {
+    "name": "Aruroda",
+    "cost": 2
+  },
+  {
+    "name": "Tektite",
+    "cost": 2
+  },
+  {
+    "name": "Tektite Lv. 2",
+    "cost": 3
+  },
+  {
+    "name": "Hoarder",
+    "cost": 3
+  },
+  {
+    "name": "Poe",
+    "cost": 4
+  },
+  {
+    "name": "Moa",
+    "cost": 3
+  },
+  {
+    "name": "Goo Specter",
+    "cost": 3
+  },
+  {
+    "name": "Ghini",
+    "cost": 1
+  },
+  {
+    "name": "Ghini Lv. 2",
+    "cost": 3
+  },
+  {
+    "name": "Leever",
+    "cost": 2
+  },
+  {
+    "name": "Pathblade",
+    "cost": 1
+  },
+  {
+    "name": "Gustmaster",
+    "cost": 3
+  },
+  {
+    "name": "Tweelus",
+    "cost": 2
+  },
+  {
+    "name": "Temper Tweelus",
+    "cost": 3
+  },
+  {
+    "name": "Freezard",
+    "cost": 3
+  },
+  {
+    "name": "Snomaul",
+    "cost": 3
+  },
+  {
+    "name": "Spark",
+    "cost": 2
+  },
+  {
+    "name": "Platboom",
+    "cost": 3
+  },
+  {
+    "name": "Beamos",
+    "cost": 3
+  }
+]

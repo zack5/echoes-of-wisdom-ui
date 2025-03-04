@@ -1,4 +1,5 @@
 import { createContext, useContext, useState } from 'react';
+import { useEchoesData } from './ContextEchoes';
 
 interface SelectorContextType {
   itemCount: number;
@@ -20,7 +21,12 @@ interface SelectorContextType {
 const SelectorContext = createContext<SelectorContextType | null>(null);
 
 export function SelectorProvider({ children }: { children: React.ReactNode }) {
-  const [itemCount, setItemCount] = useState<number>(100);
+  const echoes = useEchoesData();
+  if (!echoes) {
+    return null;
+  }
+
+  const [itemCount, setItemCount] = useState<number>(echoes.length);
   const [circleSize, setCircleSize] = useState<number>(12);
   const [selectedItem, setSelectedItem] = useState<number>(0);
   const [selectedItemRadius, setSelectedItemRadius] = useState<number>(200);

@@ -1,10 +1,10 @@
-import { motion } from "framer-motion";
-
+import { useEchoesData } from "./ContextEchoes";
 import { useSelectorData } from "./ContextSelector";
 
 export default function SelectorOption({ index }: { index: number }) {
+  const echoes = useEchoesData();
   const selectorData = useSelectorData();
-  if (!selectorData) {
+  if (!echoes || !selectorData) {
     return null;
   }
   const { selectedItem, selectedItemRadius, b, directionCount } = selectorData;
@@ -33,23 +33,19 @@ export default function SelectorOption({ index }: { index: number }) {
   const x = a * expbt * Math.cos(t);
   const y = a * expbt * Math.sin(t);
 
+  const isSelected = index === selectedItem;
+
   return (
-    <motion.div
-      className="selector-option"
+    <div
+      className={`selector-option ${isSelected ? 'selected' : ''}`}
       style={{
         position: 'absolute',
         left: `${x}px`,
         top: `${y}px`,
         opacity,
       }}
-      // initial={false}
-      // animate={{
-      //   left: `${x}px`,
-      //   top: `${y}px`,
-      //   opacity,
-      // }}
     >
-      <h2>{index}</h2>
-    </motion.div>
+      <img src={`${echoes[index].image}`} alt={echoes[index].name} />
+    </div>
   )
 }
