@@ -31,8 +31,8 @@ export function SelectorProvider({ children }: { children: React.ReactNode }) {
   const [selectedItem, setSelectedItem] = useState<number>(0);
   const [selectedItemRadius, setSelectedItemRadius] = useState<number>(200);
   const [a, setA] = useState<number>(1);
-  const [b, setB] = useState<number>(0.15);
-  const [directionCount, setDirectionCount] = useState<number>(12);
+  const [b, setB] = useState<number>(0.1);
+  const [directionCount, setDirectionCount] = useState<number>(14);
 
   return (
     <SelectorContext.Provider value={{
