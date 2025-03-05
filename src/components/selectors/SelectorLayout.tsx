@@ -4,12 +4,14 @@ import Joystick from "../Joystick";
 import GameScreen from "../GameScreen";
 
 export default function SelectorLayout({ settingsElements, menuElements }
-  : { settingsElements: React.ReactNode, menuElements: React.ReactNode }) {
+  : { settingsElements: React.ReactNode | null, menuElements: React.ReactNode }) {
 
   const navigationData = useNavigationData();
   if (!navigationData) {
     return null;
   }
+
+  const hasSettingsElements = settingsElements !== null;
 
   const { joystickPosition, setJoystickPosition } = navigationData;
   return (
@@ -22,8 +24,12 @@ export default function SelectorLayout({ settingsElements, menuElements }
           </div>
         </div>
         <div className="slider-container">
-          <h2>Settings</h2>
-          {settingsElements}
+          {hasSettingsElements && (
+            <>
+              <h2>Settings</h2>
+              {settingsElements}
+            </>
+          )}
         </div>
       </div>
       <GameScreen>
