@@ -5,6 +5,7 @@ import { useSelectorData } from "../components/ContextSelector";
 import PropertySlider from "../components/PropertySlider";
 import Joystick from "../components/Joystick";
 import EchoTitle from "../components/EchoTitle";
+import GameScreen from "../components/GameScreen";
 
 export default function SelectorController() {
   const [joystickPosition, setJoystickPosition] = useState({ x: 0, y: 0 });
@@ -46,11 +47,7 @@ export default function SelectorController() {
   }, [joystickPosition, directionCount, selectedItem]);
 
   return (
-    <>
-      <div className="selector-container">
-        {elements}
-      </div>
-      <EchoTitle />
+    <div className="selector-controller">
       <div className="slider-container">
         {/* <PropertySlider value={circleSize} setValue={setCircleSize} label="Circle Size" min={1} max={500} step={10} /> */}
         <PropertySlider value={selectedItem} setValue={setSelectedItem} label="Selected Item" min={0} max={itemCount - 1} step={1} />
@@ -61,6 +58,11 @@ export default function SelectorController() {
         <PropertySlider value={directionCount} setValue={setDirectionCount} label="Direction Count" min={1} max={20} step={1} />
         <Joystick joystickPosition={joystickPosition} setJoystickPosition={setJoystickPosition} />
       </div>
-    </>
+
+      <GameScreen>
+        {elements}
+        <EchoTitle />
+      </GameScreen>
+    </div>
   );
 }
