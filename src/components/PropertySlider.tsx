@@ -5,6 +5,7 @@ export default function PropertySlider(
   { value: number, setValue: (value: number) => void, label: string, min: number, max: number, step: number, isExponential?: boolean }) {
   return (
     <div className="slider">
+      <div className="slider-label">{label}: {value}</div>
       <Slider
         value={value}
         min={min}
@@ -16,7 +17,6 @@ export default function PropertySlider(
           setValue(value as number);
         }}
       />
-      <div className="slider-label">{label}: {value}</div>
     </div>
   );
 }
