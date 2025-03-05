@@ -1,6 +1,8 @@
 import { useEchoesData } from "./ContextEchoes";
 import { useSelectorData } from "./ContextSelector";
 
+import echoNameBackground from "../assets/textures/echo-name-background.png";
+
 export default function EchoTitle() {
   const echoes = useEchoesData();
   const selectorData = useSelectorData();
@@ -13,7 +15,8 @@ export default function EchoTitle() {
 
   return (
     <div className="echo-title">
-      <h1>{echo.name}</h1>
+      <img src={echoNameBackground} alt="echo-name-background" />
+      <span>{echo.name}</span>
     </div>
   )
 }

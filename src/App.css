@@ -99,13 +99,21 @@ h1, h2, h3 {
 
 .echo-title {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  bottom: -400px;
+  width: 1920px;
+  height: 74px;
   transform: translate(-50%, -50%);
   color: white;
   z-index: 10;
 }
 
+.echo-title span {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+}
 
 /* SLIDER */
 
