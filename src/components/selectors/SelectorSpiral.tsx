@@ -4,8 +4,8 @@ import { useNavigationData } from "../ContextNavigation";
 import { useSelectorData } from "../ContextSelector";
 import EchoTitle from "../EchoTitle";
 import PropertySlider from "../PropertySlider";
-import SelectorLayout from "./SelectorLayout";
-import SelectorOption from "../SelectorOption";
+import SelectorLayout from "../SelectorLayout";
+import SelectorOptionSpiral from "../selector_options/SelectorOptionSpiral";
 
 export default function SelectorSpiral() {
   const navigationData = useNavigationData();
@@ -20,7 +20,7 @@ export default function SelectorSpiral() {
   const visibleWindow = directionCount * 3;
   const elements = Array.from({ length: itemCount }, (_, index) => index)
     .map((index) => (
-      <SelectorOption key={index} index={index} />
+      <SelectorOptionSpiral key={index} index={index} />
     ))
     .filter((_, index) => Math.abs(index - selectedItem) <= visibleWindow / 2);
 
@@ -58,7 +58,11 @@ export default function SelectorSpiral() {
   const menuElements = (
     <>
       {elements}
-      <EchoTitle />
+      <EchoTitle 
+        extraStyles={{
+          bottom: "-430px",
+        }
+      } />
     </>
   )
 

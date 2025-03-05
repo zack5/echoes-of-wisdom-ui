@@ -169,7 +169,6 @@ footer {
   width: 128px;
   position: absolute;
   background-color: rgba(0, 0, 0, 0.3);
-  border-radius: 50%;
   box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.3);
   z-index: 0;
 }
@@ -186,13 +185,14 @@ footer {
   left: -1px;
   right: -1px;
   bottom: -1px;
-  border-radius: 50%;
+  border-radius: inherit;
   border: 2px solid white;
   filter: blur(5px);
 }
 
 .selector-option img {
   z-index: 1;
+  object-fit: contain;
 }
 
 /* ECHO TITLE */
@@ -212,7 +212,7 @@ footer {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 30px;
+  font-size: 32px;
 }
 
 /* SLIDER */

@@ -3,13 +3,13 @@ import { useEchoesData } from './ContextEchoes';
 
 interface SelectorContextType {
   itemCount: number;
-  setItemCount: (itemCount: number) => void;
+  setItemCount: (itemCount: number | ((prev: number) => number)) => void;
   circleSize: number;
-  setCircleSize: (circleSize: number) => void;
+  setCircleSize: (circleSize: number | ((prev: number) => number)) => void;
   selectedItem: number;
-  setSelectedItem: (selectedItem: number) => void;
+  setSelectedItem: (selectedItem: number | ((prev: number) => number)) => void;
   selectedItemRadius: number;
-  setSelectedItemRadius: (selectedItemRadius: number) => void;
+  setSelectedItemRadius: (selectedItemRadius: number | ((prev: number) => number)) => void;
   a: number;
   setA: (a: number) => void;
   b: number;

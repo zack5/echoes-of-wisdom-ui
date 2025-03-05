@@ -1,7 +1,7 @@
-import { useNavigationData } from "../ContextNavigation";
+import { useNavigationData } from "./ContextNavigation";
 
-import Joystick from "../Joystick";
-import GameScreen from "../GameScreen";
+import Joystick from "./Joystick";
+import GameScreen from "./GameScreen";
 
 export default function SelectorLayout({ settingsElements, menuElements }
   : { settingsElements: React.ReactNode | null, menuElements: React.ReactNode }) {
