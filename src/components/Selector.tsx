@@ -1,13 +1,16 @@
-import SelectorController from "./SelectorController";
-import { SelectorProvider } from "../components/ContextSelector";
-import { EchoesProvider } from "../components/ContextEchoes";
+import SelectorSpiral from "./selectors/SelectorSpiral";
+import { SelectorProvider } from "./ContextSelector";
+import { EchoesProvider } from "./ContextEchoes";
+import { NavigationProvider } from "./ContextNavigation";
 
 export default function Selector() {
   return (
-    <EchoesProvider>
-      <SelectorProvider>
-        <SelectorController />
-      </SelectorProvider>
-    </EchoesProvider>
+    <NavigationProvider>
+      <EchoesProvider>
+        <SelectorProvider>
+          <SelectorSpiral />
+        </SelectorProvider>
+      </EchoesProvider>
+    </NavigationProvider>
   )
 }

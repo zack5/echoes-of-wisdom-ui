@@ -1,20 +1,21 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-import SelectorOption from "../components/SelectorOption";
-import { useSelectorData } from "../components/ContextSelector";
-import PropertySlider from "../components/PropertySlider";
-import Joystick from "../components/Joystick";
-import EchoTitle from "../components/EchoTitle";
-import GameScreen from "../components/GameScreen";
+import { useNavigationData } from "../ContextNavigation";
+import { useSelectorData } from "../ContextSelector";
+import EchoTitle from "../EchoTitle";
+import PropertySlider from "../PropertySlider";
+import SelectorLayout from "./SelectorLayout";
+import SelectorOption from "../SelectorOption";
 
-export default function SelectorController() {
-  const [joystickPosition, setJoystickPosition] = useState({ x: 0, y: 0 });
+export default function SelectorSpiral() {
+  const navigationData = useNavigationData();
   const selectorData = useSelectorData();
-  if (!selectorData) {
+  if (!selectorData || !navigationData) {
     return null;
   }
-
-  const { itemCount, selectedItem, setSelectedItem, selectedItemRadius, setSelectedItemRadius, a, setA, b, setB, directionCount, setDirectionCount } = selectorData;
+  
+  const { joystickPosition } = navigationData;
+  const { itemCount, selectedItem, setSelectedItem, selectedItemRadius, setSelectedItemRadius, b, setB, directionCount, setDirectionCount } = selectorData;
 
   const visibleWindow = directionCount * 3;
   const elements = Array.from({ length: itemCount }, (_, index) => index)
@@ -46,23 +47,22 @@ export default function SelectorController() {
     }
   }, [joystickPosition, directionCount, selectedItem]);
 
-  return (
-    <div className="selector-controller">
-      <div className="slider-container">
-        {/* <PropertySlider value={circleSize} setValue={setCircleSize} label="Circle Size" min={1} max={500} step={10} /> */}
-        <PropertySlider value={selectedItem} setValue={setSelectedItem} label="Selected Item" min={0} max={itemCount - 1} step={1} />
+  const settingsElements = (
+    <>
         <PropertySlider value={selectedItemRadius} setValue={setSelectedItemRadius} label="Selected Item Radius" min={1} max={500} step={10} />
-        {/* <PropertySlider value={itemCount} setValue={setItemCount} label="Item Count" min={1} max={100} step={1} /> */}
-        {/* <PropertySlider value={a} setValue={setA} label="a" min={0} max={20} step={0.01} isExponential={true} /> */}
         <PropertySlider value={b} setValue={setB} label="b" min={0} max={1} step={0.01} isExponential={true} />
         <PropertySlider value={directionCount} setValue={setDirectionCount} label="Direction Count" min={1} max={20} step={1} />
-        <Joystick joystickPosition={joystickPosition} setJoystickPosition={setJoystickPosition} />
-      </div>
+    </>
+  )
 
-      <GameScreen>
-        {elements}
-        <EchoTitle />
-      </GameScreen>
-    </div>
-  );
+  const menuElements = (
+    <>
+      {elements}
+      <EchoTitle />
+    </>
+  )
+
+  return (
+    <SelectorLayout settingsElements={settingsElements} menuElements={menuElements} />
+  )
 }
