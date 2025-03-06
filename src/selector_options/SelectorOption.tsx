@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { useEchoesData } from "../ContextEchoes";
-import { useSelectorData } from "../ContextSelector";
+import { useEchoesData } from "../contexts/ContextEchoes";
+import { useSelectorData } from "../contexts/ContextSelector";
 
-import costTriangle from "../../assets/textures/cost-triangle.png";
+import costTriangle from "../assets/textures/cost-triangle.png";
 
 export default function SelectorOption({ index, extraClassNames, extraStyles, targetPosition, targetOpacity, targetScale,  }
   : {

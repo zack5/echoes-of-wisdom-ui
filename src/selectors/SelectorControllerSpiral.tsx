@@ -1,13 +1,13 @@
 import { useEffect } from "react";
 
-import { useNavigationData } from "../ContextNavigation";
-import { useSelectorData } from "../ContextSelector";
-import EchoTitle from "../EchoTitle";
-import PropertySlider from "../PropertySlider";
-import SelectorLayout from "../SelectorLayout";
+import { useNavigationData } from "../contexts/ContextNavigation";
+import { useSelectorData } from "../contexts/ContextSelector";
+import EchoTitle from "../components/EchoTitle";
+import PropertySlider from "../components/PropertySlider";
+import SelectorLayout from "../components/SelectorLayout";
 import SelectorOptionSpiral from "../selector_options/SelectorOptionSpiral";
 
-export default function SelectorSpiral() {
+export default function SelectorControllerSpiral() {
   const navigationData = useNavigationData();
   const selectorData = useSelectorData();
   if (!selectorData || !navigationData) {

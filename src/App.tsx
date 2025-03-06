@@ -2,14 +2,14 @@ import './App.css'
 
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { SelectorProvider } from "./components/ContextSelector";
-import { EchoesProvider } from "./components/ContextEchoes";
-import { NavigationProvider } from "./components/ContextNavigation";
+import { SelectorProvider } from "./contexts/ContextSelector";
+import { EchoesProvider } from "./contexts/ContextEchoes";
+import { NavigationProvider } from "./contexts/ContextNavigation";
 import Layout from "./components/Layout";
-import NotFound from "./components/NotFound";
+import NotFound from "./pages/NotFound";
 import SelectorChoice from "./components/SelectorChoice";
-import SelectorOriginal from './components/selectors/SelectorOriginal';
-import SelectorSpiral from "./components/selectors/SelectorSpiral";
+import SelectorControllerOriginal from './selectors/SelectorControllerOriginal';
+import SelectorControllerSpiral from "./selectors/SelectorControllerSpiral";
 
 function App() {
 
@@ -22,11 +22,11 @@ function App() {
               <Routes>
                 <Route path="/" element={<Layout />} >
                   <Route element={<SelectorChoice />} >
-                    <Route index element={<SelectorOriginal />} />
-                    <Route path="acceleration" element={<SelectorOriginal useAcceleration={true} />} />
-                    <Route path="grid" element={<SelectorSpiral />} />
-                    <Route path="bar" element={<SelectorSpiral />} />
-                    <Route path="spiral" element={<SelectorSpiral />} />
+                    <Route index element={<SelectorControllerOriginal />} />
+                    <Route path="acceleration" element={<SelectorControllerOriginal useAcceleration={true} />} />
+                    <Route path="grid" element={<SelectorControllerSpiral />} />
+                    <Route path="bar" element={<SelectorControllerSpiral />} />
+                    <Route path="spiral" element={<SelectorControllerSpiral />} />
                   </Route>
                   <Route path="*" element={<NotFound />} />
                 </Route>

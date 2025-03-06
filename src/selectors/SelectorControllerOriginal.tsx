@@ -1,17 +1,17 @@
 import { useEffect, useRef } from "react";
 
-import { useNavigationData } from "../ContextNavigation";
-import { useSelectorData } from "../ContextSelector";
-import EchoTitle from "../EchoTitle";
-import PropertySlider from "../PropertySlider";
-import SelectorLayout from "../SelectorLayout";
+import { useNavigationData } from "../contexts/ContextNavigation";
+import { useSelectorData } from "../contexts/ContextSelector";
+import EchoTitle from "../components/EchoTitle";
+import PropertySlider from "../components/PropertySlider";
+import SelectorLayout from "../components/SelectorLayout";
 import SelectorOptionOriginal from "../selector_options/SelectorOptionOriginal";
 import { WIDTH, HEIGHT } from "../selector_options/SelectorOptionConstants";
 
 const INITIAL_DELAY = 430;
 const REPEAT_RATE = 80;
 
-export default function SelectorOriginal({useAcceleration = false}: {useAcceleration?: boolean}) {
+export default function SelectorControllerOriginal({useAcceleration = false}: {useAcceleration?: boolean}) {
   const navigationData = useNavigationData();
   const selectorData = useSelectorData();
   const intervalRef = useRef<number | null>(null);

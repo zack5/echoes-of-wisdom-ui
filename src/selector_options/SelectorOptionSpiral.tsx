@@ -1,5 +1,5 @@
-import { useEchoesData } from "../ContextEchoes";
-import { useSelectorData } from "../ContextSelector";
+import { useEchoesData } from "../contexts/ContextEchoes";
+import { useSelectorData } from "../contexts/ContextSelector";
 import SelectorOption from "./SelectorOption";
 
 export default function SelectorOptionSpiral({ index }: { index: number }) {

@@ -1,4 +1,4 @@
-import { useNavigationData } from "./ContextNavigation";
+import { useNavigationData } from "../contexts/ContextNavigation";
 
 import Joystick from "./Joystick";
 import GameScreen from "./GameScreen";

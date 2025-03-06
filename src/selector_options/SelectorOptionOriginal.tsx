@@ -1,5 +1,5 @@
-import { useEchoesData } from "../ContextEchoes";
-import { useSelectorData } from "../ContextSelector";
+import { useEchoesData } from "../contexts/ContextEchoes";
+import { useSelectorData } from "../contexts/ContextSelector";
 import SelectorOption from "./SelectorOption";
 import { WIDTH, HEIGHT, GAP } from "./SelectorOptionConstants";
 
