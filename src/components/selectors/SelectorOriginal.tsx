@@ -31,6 +31,18 @@ export default function SelectorOriginal() {
     });
   }
 
+  const incrementWithWrapping = () => {
+    setSelectedItem((prev) => {
+      const next = prev + isHoldingRef.current;
+      if (next < 0) {
+        return itemCount - 1;
+      } else if (next >= itemCount) {
+        return 0;
+      }
+      return next;
+    });
+  }
+
   const visibleWindow = 20;
   const elements = Array.from({ length: itemCount }, (_, index) => index)
     .map((index) => (
@@ -39,7 +51,7 @@ export default function SelectorOriginal() {
     .filter((_, index) => Math.abs(index - selectedItem) <= visibleWindow / 2);
 
   const startIncrement = () => {
-    increment();
+    incrementWithWrapping();
 
     timeoutRef.current = window.setTimeout(() => {
       if (isHoldingRef.current) {

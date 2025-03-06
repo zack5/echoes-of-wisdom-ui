@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { useEchoesData } from "../ContextEchoes";
 import { useSelectorData } from "../ContextSelector";
 
+import costTriangle from "../../assets/textures/cost-triangle.png";
+
 export default function SelectorOption({ index, extraClassNames, extraStyles, targetPosition, targetOpacity, targetScale,  }
   : {
     index: number,
@@ -62,6 +64,23 @@ export default function SelectorOption({ index, extraClassNames, extraStyles, ta
     return null;
   }
 
+  const cost = echoes[index].cost;
+  const costTriangleElements = Array.from({ length: cost }, (_, index) => {
+    const rotation = (cost - 2 * index - 1) * -7;
+    const yOffset = 0.008 * (Math.abs(rotation) ** 2.02);
+    const margin = -7 - 0.5 * (Math.abs(cost - 2 * index - 1));
+    return (
+      <img 
+        src={costTriangle} 
+        alt="triangle" 
+        style={{ 
+          transform: `translateY(${yOffset}px) rotate(${rotation}deg)`, 
+          marginInline: `${margin}px` 
+        }} 
+      />
+    );
+  });
+
   return (
     <div
       className={`selector-option ${extraClassNames}`}
@@ -74,7 +93,10 @@ export default function SelectorOption({ index, extraClassNames, extraStyles, ta
         transform: `translate(-50%, -50%) scale(${scale})`,
       }}
     >
-      <img src={`${echoes[index].image}`} alt={echoes[index].name} />
+      <img src={`${echoes[index].image}`} alt={echoes[index].name} style={{ top: `5%` }} />
+      <div className="cost-triangle-container">
+        {costTriangleElements}
+      </div>
     </div>
   );
 }

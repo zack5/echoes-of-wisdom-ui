@@ -5,13 +5,12 @@ import uiOverlay from "../assets/textures/ui-overlay.png";
 
 export default function GameScreen({ children }: { children: React.ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [scale, setScale] = useState(1);
+  const [scale, setScale] = useState(0);
 
   useEffect(() => {
     const handleResize = () => {
       if (containerRef.current) {
         const width = containerRef.current.offsetWidth
-        console.log(containerRef.current, width, window.innerWidth);
         const scale = width / 1920;
         setScale(scale);
       }

@@ -25,13 +25,14 @@ function App() {
                     <Route index element={<SelectorOriginal />} />
                     <Route path="spiral" element={<SelectorSpiral />} />
                   </Route>
-                <Route path="*" element={<NotFound />} />
+                  <Route path="*" element={<NotFound />} />
                 </Route>
               </Routes>
             </BrowserRouter>
           </SelectorProvider>
         </EchoesProvider>
-      </NavigationProvider>    </>
+      </NavigationProvider>
+    </>
   )
 }
 

@@ -41,9 +41,14 @@ body {
 
 h1,
 h2,
-h3 {
+h3,
+p {
   margin-top: 0;
   font-family: 'STHeiti Medium', sans-serif;
+}
+
+h2 {
+  margin-bottom: 0;
 }
 
 a {
@@ -87,6 +92,12 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
 }
 
 /* --- FOOTER ---*/
@@ -162,6 +173,11 @@ footer {
   gap: 4rem;
 }
 
+.controls-title-container > p {
+  font-size: 0.8rem;
+  color: var(--color-link);
+}
+
 /* SELECTOR OPTION */
 
 .selector-option {
@@ -193,6 +209,25 @@ footer {
 .selector-option img {
   z-index: 1;
   object-fit: contain;
+}
+
+.cost-triangle-container {
+  position: absolute;
+  width: 100%;
+  height: 30%;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.cost-triangle-container img {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  margin-inline: -7px;
 }
 
 /* ECHO TITLE */

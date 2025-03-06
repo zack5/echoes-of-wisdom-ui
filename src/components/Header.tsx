@@ -16,7 +16,7 @@ export default function Header() {
     <header>
       <div className='logo-container'>
         <Link to="/" className='logo-link'>
-          <span>Echoes of Wisdom Menu Alternatives</span>
+          <span>Echoes of Wisdom UI Exploration</span>
         </Link>
       </div>
       <div className='nav-container'>

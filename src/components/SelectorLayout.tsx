@@ -18,7 +18,10 @@ export default function SelectorLayout({ settingsElements, menuElements }
     <div className="selector-layout">
       <div className="selector-sidepanel">
         <div className="controls-container">
-          <h2>Controls</h2>
+          <div className="controls-title-container">
+            <h2>Controls</h2>
+            <p>Use arrow keys or virtual joystick.</p>
+          </div>
           <div className="joystick-container">
             <Joystick joystickPosition={joystickPosition} setJoystickPosition={setJoystickPosition} />
           </div>

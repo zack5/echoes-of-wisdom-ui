@@ -225,15 +225,15 @@
   },
   {
     "name": "Gibdo",
-    "cost": ""
+    "cost": 3
   },
   {
     "name": "Gibdo Lv. 2",
-    "cost": ""
+    "cost": 4
   },
   {
     "name": "ReDead",
-    "cost": ""
+    "cost": 3
   },
   {
     "name": "Fire Wizzrobe",
@@ -249,27 +249,27 @@
   },
   {
     "name": "Caromadillo",
-    "cost": ""
+    "cost": 2
   },
   {
     "name": "Caromadillo Lv. 2",
-    "cost": ""
+    "cost": 3
   },
   {
     "name": "Rope",
-    "cost": ""
+    "cost": 1
   },
   {
     "name": "Tornando",
-    "cost": ""
+    "cost": 2
   },
   {
     "name": "Ribbitune",
-    "cost": ""
+    "cost": 2
   },
   {
     "name": "Drippitune",
-    "cost": ""
+    "cost": 3
   },
   {
     "name": "Torch Slug",
