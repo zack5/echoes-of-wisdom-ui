@@ -12,6 +12,7 @@ import SelectorChoice from "./components/SelectorChoice";
 import SelectorControllerOriginal from './selectors/SelectorControllerOriginal';
 import SelectorControllerScrollingGrid from "./selectors/SelectorControllerScrollingGrid";
 import SelectorControllerSpiral from "./selectors/SelectorControllerSpiral";
+import SelectorControllerTabbedGrid from "./selectors/SelectorControllerTabbedGrid";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
                     <Route index element={<SelectorControllerOriginal />} />
                     <Route path="acceleration" element={<SelectorControllerOriginal useAcceleration={true} />} />
                     <Route path="scrolling-grid" element={<SelectorControllerScrollingGrid />} />
-                    <Route path="tabbed-grid" element={<SelectorControllerSpiral />} />
+                    <Route path="tabbed-grid" element={<SelectorControllerTabbedGrid />} />
                     <Route path="bar" element={<SelectorControllerSpiral />} />
                     <Route path="spiral" element={<SelectorControllerSpiral />} />
                   </Route>

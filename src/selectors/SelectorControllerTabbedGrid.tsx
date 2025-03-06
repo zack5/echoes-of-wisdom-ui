@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 
+import { useEchoesData } from "../contexts/ContextEchoes";
 import { useNavigationData } from "../contexts/ContextNavigation";
 import { useSelectorData } from "../contexts/ContextSelector";
 
@@ -12,9 +13,10 @@ import { WIDTH, HEIGHT, GRID_COLUMNS, GAP } from "../selector_options/SelectorOp
 import { useJoystickGridNavigation } from "../hooks/useJoystickGridNavigation";
 
 export default function SelectorControllerScrollingGrid() {
+  const echoesData = useEchoesData();
   const navigationData = useNavigationData();
   const selectorData = useSelectorData();
-  if (!selectorData || !navigationData) {
+  if (!echoesData || !navigationData || !selectorData) {
     return null;
   }
 
