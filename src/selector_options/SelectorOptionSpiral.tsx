@@ -1,6 +1,6 @@
 import { useEchoesData } from "../contexts/ContextEchoes";
 import { useSelectorData } from "../contexts/ContextSelector";
-import SelectorOption from "./SelectorOption";
+import SelectorOptionSelfPositioning from "./SelectorOptionSelfPositioning";
 
 export default function SelectorOptionSpiral({ index }: { index: number }) {
   const echoes = useEchoesData();
@@ -35,7 +35,7 @@ export default function SelectorOptionSpiral({ index }: { index: number }) {
   const targetScale = Math.max(0, (0.8 + 0.035 * (index - selectedItem)) * 1.16 * itemScale);
 
   return (
-    <SelectorOption
+    <SelectorOptionSelfPositioning
       index={index}
       extraClassNames={index === selectedItem ? "selected" : ""}
       extraStyles={{

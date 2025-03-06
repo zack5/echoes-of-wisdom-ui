@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 
 import overworld from "../assets/textures/overworld-no-ui.jpg";
+import overworldMask from "../assets/textures/overworld-no-ui-mask.png";
 import uiOverlay from "../assets/textures/ui-overlay.png";
 
-export default function GameScreen({ children }: { children: React.ReactNode }) {
+export default function GameScreen({ children, useMask = false }: { children: React.ReactNode, useMask?: boolean }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(0);
 
@@ -35,11 +36,12 @@ export default function GameScreen({ children }: { children: React.ReactNode }) 
             overflow: "hidden",
           }}
         >
-          <img src={overworld} alt="background" className="background-blur" />
-          <img src={uiOverlay} alt="ui-overlay" />
+          <img src={overworld} alt="background" className="game-image-fullscreen background-blur"/>
           <div className="selector-container">
             {children}
           </div>
+          {useMask && <img src={overworldMask} alt="overworld-mask" className="game-image-fullscreen background-blur ui-layer"/>}
+          <img src={uiOverlay} alt="ui-overlay" className="game-image-fullscreen ui-layer"/>
         </div>
       </div>
     </>

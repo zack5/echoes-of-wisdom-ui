@@ -3,8 +3,8 @@ import { useNavigationData } from "../contexts/ContextNavigation";
 import Joystick from "./Joystick";
 import GameScreen from "./GameScreen";
 
-export default function SelectorLayout({ parametersElements, menuElements }
-  : { parametersElements: React.ReactNode | null, menuElements: React.ReactNode }) {
+export default function SelectorLayout({ parametersElements, menuElements, useMask = false }
+  : { parametersElements: React.ReactNode | null, menuElements: React.ReactNode, useMask?: boolean }) {
 
   const navigationData = useNavigationData();
   if (!navigationData) {
@@ -35,7 +35,7 @@ export default function SelectorLayout({ parametersElements, menuElements }
           )}
         </div>
       </div>
-      <GameScreen>
+      <GameScreen useMask={useMask}>
         {menuElements}
       </GameScreen>
     </div>

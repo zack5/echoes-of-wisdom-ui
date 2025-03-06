@@ -137,17 +137,21 @@ footer {
   height: 100%;
 }
 
-.game-screen img {
+.game-image-fullscreen {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1;
 }
 
 .background-blur {
+  transform: scale(1.05);
   filter: blur(10px);
+}
+
+.ui-layer {
+  z-index: 100;
 }
 
 .selector-container {
@@ -181,12 +185,14 @@ footer {
 /* SELECTOR OPTION */
 
 .selector-option {
-  height: 128px;
-  width: 128px;
-  position: absolute;
   background-color: rgba(0, 0, 0, 0.3);
   box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.3);
   z-index: 0;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .selected {
@@ -212,7 +218,6 @@ footer {
 }
 
 .cost-triangle-container {
-  position: absolute;
   width: 100%;
   height: 30%;
   top: 0;
@@ -221,6 +226,7 @@ footer {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-bottom: -20px;
 }
 
 .cost-triangle-container img {
@@ -229,6 +235,8 @@ footer {
   height: 32px;
   margin-inline: -7px;
 }
+
+/* GRID */
 
 /* ECHO TITLE */
 
@@ -239,7 +247,7 @@ footer {
   height: 74px;
   transform: translate(-50%, -50%);
   color: white;
-  z-index: 10;
+  z-index: 101;
 }
 
 .echo-title span {

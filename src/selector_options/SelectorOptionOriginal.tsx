@@ -1,6 +1,6 @@
 import { useEchoesData } from "../contexts/ContextEchoes";
 import { useSelectorData } from "../contexts/ContextSelector";
-import SelectorOption from "./SelectorOption";
+import SelectorOptionSelfPositioning from "./SelectorOptionSelfPositioning";
 import { WIDTH, HEIGHT, GAP } from "./SelectorOptionConstants";
 
 export default function SelectorOptionOriginal({ index }: { index: number }) {
@@ -12,7 +12,7 @@ export default function SelectorOptionOriginal({ index }: { index: number }) {
   const { selectedItem } = selectorData;
 
   return (
-    <SelectorOption
+    <SelectorOptionSelfPositioning
       index={index}
       extraClassNames=""
       extraStyles={{

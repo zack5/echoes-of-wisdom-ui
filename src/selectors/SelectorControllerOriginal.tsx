@@ -1,22 +1,18 @@
-import { useEffect, useRef } from "react";
-
 import { useNavigationData } from "../contexts/ContextNavigation";
 import { useSelectorData } from "../contexts/ContextSelector";
+
 import EchoTitle from "../components/EchoTitle";
 import PropertySlider from "../components/PropertySlider";
 import SelectorLayout from "../components/SelectorLayout";
+
 import SelectorOptionOriginal from "../selector_options/SelectorOptionOriginal";
 import { WIDTH, HEIGHT } from "../selector_options/SelectorOptionConstants";
 
-const INITIAL_DELAY = 430;
-const REPEAT_RATE = 80;
+import { useJoystickGridNavigation } from "../hooks/useJoystickGridNavigation";
 
 export default function SelectorControllerOriginal({useAcceleration = false}: {useAcceleration?: boolean}) {
   const navigationData = useNavigationData();
   const selectorData = useSelectorData();
-  const intervalRef = useRef<number | null>(null);
-  const timeoutRef = useRef<number | null>(null);
-  const isHoldingRef = useRef(0) // -1: holding left, 0: not held, 1: holding right
   if (!selectorData || !navigationData) {
     return null;
   }
@@ -24,25 +20,16 @@ export default function SelectorControllerOriginal({useAcceleration = false}: {u
   const { joystickPosition } = navigationData;
   const { itemCount, selectedItem, setSelectedItem, acceleration, setAcceleration, minStepDuration, setMinStepDuration } = selectorData;
 
-  const increment = () => {
-    setSelectedItem((prev) => {
-      const next = prev + isHoldingRef.current;
-      const clamped = Math.max(0, Math.min(next, itemCount - 1));
-      return clamped;
-    });
-  }
-
-  const incrementWithWrapping = () => {
-    setSelectedItem((prev) => {
-      const next = prev + isHoldingRef.current;
-      if (next < 0) {
-        return itemCount - 1;
-      } else if (next >= itemCount) {
-        return 0;
-      }
-      return next;
-    });
-  }
+  useJoystickGridNavigation({
+    joystickPosition,
+    itemCount,
+    setSelectedItem,
+    numRows: 1,
+    numColumns: itemCount,
+    useAcceleration,
+    acceleration,
+    minStepDuration,
+  });
 
   const visibleWindow = useAcceleration ? itemCount * 0.8 : 30;
   const elements = Array.from({ length: itemCount }, (_, index) => index)
@@ -50,57 +37,6 @@ export default function SelectorControllerOriginal({useAcceleration = false}: {u
       <SelectorOptionOriginal key={index} index={index} />
     ))
     .filter((_, index) => Math.abs(index - selectedItem) <= visibleWindow / 2);
-
-  const startIncrement = () => {
-    incrementWithWrapping();
-
-    let currentRepeatRate = REPEAT_RATE;
-    
-    timeoutRef.current = window.setTimeout(() => {
-      if (isHoldingRef.current) {
-        const tick = () => {
-          increment();
-
-          if (useAcceleration) {
-            currentRepeatRate = Math.max(currentRepeatRate * (1 - acceleration), minStepDuration);
-          }
-          
-          intervalRef.current = window.setTimeout(tick, currentRepeatRate);
-        };
-        tick();
-      }
-    }, INITIAL_DELAY);
-  }
-
-  const stopIncrement = () => {
-    if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
-    if (intervalRef.current) window.clearInterval(intervalRef.current);
-  }
-
-  useEffect(() => {
-    if (isHoldingRef.current != Math.sign(joystickPosition.x)) {
-      isHoldingRef.current = 0;
-      stopIncrement();
-    }
-
-    if (Math.abs(joystickPosition.x) > 0) {
-      if (!isHoldingRef.current) {
-        isHoldingRef.current = Math.sign(joystickPosition.x);
-        startIncrement();
-      }
-    } else {
-      if (isHoldingRef.current) {
-        isHoldingRef.current = 0;
-        stopIncrement();
-      }
-    }
-
-    return () => {
-      if (joystickPosition && Math.abs(joystickPosition.x) <= 0) {
-        stopIncrement();
-      }
-    }
-  }, [joystickPosition, setSelectedItem]);
 
   const menuElements = (
     <>
@@ -147,6 +83,6 @@ export default function SelectorControllerOriginal({useAcceleration = false}: {u
   ) : null;
 
   return (
-    <SelectorLayout parametersElements={parametersElements} menuElements={menuElements} />
+    <SelectorLayout parametersElements={parametersElements} menuElements={menuElements} useMask={true}/>
   )
 }

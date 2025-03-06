@@ -16,11 +16,17 @@ export function NavigationProvider({ children }: { children: React.ReactNode }) 
         setJoystickPosition({ x: 100, y: 0 });
       } else if (event.key === "ArrowLeft") {
         setJoystickPosition({ x: -100, y: 0 });
+      } else if (event.key === "ArrowUp") {
+        setJoystickPosition({ x: 0, y: -100 });
+      } else if (event.key === "ArrowDown") {
+        setJoystickPosition({ x: 0, y: 100 });
       }
     };
 
     const handleKeyUp = (event: KeyboardEvent) => {
-      if (event.key === "ArrowRight" || event.key === "ArrowLeft") {
+      if (event.key === "ArrowRight" || event.key === "ArrowLeft" 
+        || event.key === "ArrowUp" || event.key === "ArrowDown")
+      {
         setJoystickPosition({ x: 0, y: 0 });
       }
     };
