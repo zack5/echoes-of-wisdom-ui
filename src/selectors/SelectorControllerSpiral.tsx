@@ -24,7 +24,7 @@ export default function SelectorControllerSpiral() {
     itemScale, setItemScale
   } = selectorData;
 
-  const visibleWindow = directionCount * 3;
+  const visibleWindow = directionCount * 4;
   const elements = Array.from({ length: itemCount }, (_, index) => index)
     .map((index) => (
       <SelectorOptionSpiral key={index} index={index} />
