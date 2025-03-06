@@ -124,7 +124,7 @@ export default function SelectorOriginal({useAcceleration = false}: {useAccelera
     </>
   )
 
-  const settingsElements = useAcceleration ? (
+  const parametersElements = useAcceleration ? (
     <>
       <PropertySlider
         value={acceleration}
@@ -147,6 +147,6 @@ export default function SelectorOriginal({useAcceleration = false}: {useAccelera
   ) : null;
 
   return (
-    <SelectorLayout settingsElements={settingsElements} menuElements={menuElements} />
+    <SelectorLayout parametersElements={parametersElements} menuElements={menuElements} />
   )
 }

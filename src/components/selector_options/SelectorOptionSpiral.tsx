@@ -8,7 +8,7 @@ export default function SelectorOptionSpiral({ index }: { index: number }) {
   if (!echoes || !selectorData) {
     return null;
   }
-  const { selectedItem, selectedItemRadius, b, directionCount } = selectorData;
+  const { selectedItem, itemScale, selectedItemRadius, b, directionCount } = selectorData;
 
   function computeOpacity(index: number) {
     const distance = Math.abs(selectedItem - index);
@@ -32,7 +32,7 @@ export default function SelectorOptionSpiral({ index }: { index: number }) {
 
   const targetPosition = computePosition(index);
   const targetOpacity = computeOpacity(index);
-  const targetScale = 0.8 + 0.03 * (index - selectedItem);
+  const targetScale = (0.8 + 0.035 * (index - selectedItem)) * 1.16 * itemScale;
 
   return (
     <SelectorOption

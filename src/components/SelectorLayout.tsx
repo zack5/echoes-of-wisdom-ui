@@ -3,15 +3,15 @@ import { useNavigationData } from "./ContextNavigation";
 import Joystick from "./Joystick";
 import GameScreen from "./GameScreen";
 
-export default function SelectorLayout({ settingsElements, menuElements }
-  : { settingsElements: React.ReactNode | null, menuElements: React.ReactNode }) {
+export default function SelectorLayout({ parametersElements, menuElements }
+  : { parametersElements: React.ReactNode | null, menuElements: React.ReactNode }) {
 
   const navigationData = useNavigationData();
   if (!navigationData) {
     return null;
   }
 
-  const hasSettingsElements = settingsElements !== null;
+  const hasSettingsElements = parametersElements !== null;
 
   const { joystickPosition, setJoystickPosition } = navigationData;
   return (
@@ -29,8 +29,8 @@ export default function SelectorLayout({ settingsElements, menuElements }
         <div className="slider-container">
           {hasSettingsElements && (
             <>
-              <h2>Settings</h2>
-              {settingsElements}
+              <h2>Parameters</h2>
+              {parametersElements}
             </>
           )}
         </div>

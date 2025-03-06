@@ -13,9 +13,16 @@ export default function SelectorSpiral() {
   if (!selectorData || !navigationData) {
     return null;
   }
-  
+
   const { joystickPosition } = navigationData;
-  const { itemCount, selectedItem, setSelectedItem, selectedItemRadius, setSelectedItemRadius, b, setB, directionCount, setDirectionCount } = selectorData;
+  const {
+    itemCount,
+    selectedItem, setSelectedItem,
+    selectedItemRadius, setSelectedItemRadius,
+    b, setB,
+    directionCount, setDirectionCount,
+    itemScale, setItemScale
+  } = selectorData;
 
   const visibleWindow = directionCount * 3;
   const elements = Array.from({ length: itemCount }, (_, index) => index)
@@ -47,26 +54,55 @@ export default function SelectorSpiral() {
     }
   }, [joystickPosition, directionCount, selectedItem]);
 
-  const settingsElements = (
+  const parametersElements = (
     <>
-        <PropertySlider value={selectedItemRadius} setValue={setSelectedItemRadius} label="Radius" min={1} max={500} step={10} />
-        <PropertySlider value={b} setValue={setB} label="Spiral Factor" min={0} max={1} step={0.01} />
-        <PropertySlider value={directionCount} setValue={setDirectionCount} label="Direction Count" min={1} max={20} step={1} />
+      <PropertySlider
+        value={selectedItemRadius}
+        setValue={setSelectedItemRadius}
+        label="Radius"
+        min={1}
+        max={500}
+        step={10}
+      />
+      <PropertySlider
+        value={itemScale}
+        setValue={setItemScale}
+        label="Item Scale"
+        min={0.5}
+        max={1.5}
+        step={0.01}
+      />
+      <PropertySlider
+        value={directionCount}
+        setValue={setDirectionCount}
+        label="Direction Count"
+        min={1}
+        max={20}
+        step={1}
+      />
+      <PropertySlider value={b}
+        setValue={setB}
+        label="Spiral Factor"
+        subLabel="'b' in formula r=a*e^(b*theta)"
+        min={0}
+        max={0.2}
+        step={0.01}
+      />
     </>
   )
 
   const menuElements = (
     <>
       {elements}
-      <EchoTitle 
+      <EchoTitle
         extraStyles={{
           bottom: "-430px",
         }
-      } />
+        } />
     </>
   )
 
   return (
-    <SelectorLayout settingsElements={settingsElements} menuElements={menuElements} />
+    <SelectorLayout parametersElements={parametersElements} menuElements={menuElements} />
   )
 }

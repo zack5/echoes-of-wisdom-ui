@@ -4,15 +4,13 @@ import { useEchoesData } from './ContextEchoes';
 interface SelectorContextType {
   itemCount: number;
   setItemCount: (itemCount: number | ((prev: number) => number)) => void;
-  circleSize: number;
-  setCircleSize: (circleSize: number | ((prev: number) => number)) => void;
+  itemScale: number;
+  setItemScale: (itemScale: number | ((prev: number) => number)) => void;
   selectedItem: number;
   setSelectedItem: (selectedItem: number | ((prev: number) => number)) => void;
   selectedItemRadius: number;
   setSelectedItemRadius: (selectedItemRadius: number | ((prev: number) => number)) => void;
-  a: number;
-  setA: (a: number | ((prev: number) => number)) => void;
-  b: number;
+  b: number; // "spiral factor", b in golden spiral formula
   setB: (b: number | ((prev: number) => number)) => void;
   directionCount: number;
   setDirectionCount: (directionCount: number | ((prev: number) => number)) => void;
@@ -31,26 +29,23 @@ export function SelectorProvider({ children }: { children: React.ReactNode }) {
   }
 
   const [itemCount, setItemCount] = useState<number>(echoes.length);
-  const [circleSize, setCircleSize] = useState<number>(12);
+  const [itemScale, setItemScale] = useState<number>(1);
   const [selectedItem, setSelectedItem] = useState<number>(0);
-  const [selectedItemRadius, setSelectedItemRadius] = useState<number>(200);
-  const [a, setA] = useState<number>(1);
-  const [b, setB] = useState<number>(0.1);
-  const [directionCount, setDirectionCount] = useState<number>(14);
+  const [selectedItemRadius, setSelectedItemRadius] = useState<number>(240);
+  const [b, setB] = useState<number>(0.09);
+  const [directionCount, setDirectionCount] = useState<number>(12);
   const [acceleration, setAcceleration] = useState<number>(0.15);
   const [minStepDuration, setMinStepDuration] = useState<number>(10);
   return (
     <SelectorContext.Provider value={{
       itemCount,
       setItemCount,
-      circleSize,
-      setCircleSize,
+      itemScale,
+      setItemScale,
       selectedItem,
       setSelectedItem,
       selectedItemRadius,
       setSelectedItemRadius,
-      a,
-      setA,
       b,
       setB,
       directionCount,
