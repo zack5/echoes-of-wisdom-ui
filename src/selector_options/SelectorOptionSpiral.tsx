@@ -2,16 +2,19 @@ import { useEchoesData } from "../contexts/ContextEchoes";
 import { useSelectorData } from "../contexts/ContextSelector";
 import SelectorOptionSelfPositioning from "./SelectorOptionSelfPositioning";
 
-export default function SelectorOptionSpiral({ index }: { index: number }) {
+export default function SelectorOptionSpiral({ echoId }: { echoId: string }) {
   const echoes = useEchoesData();
   const selectorData = useSelectorData();
   if (!echoes || !selectorData) {
     return null;
   }
-  const { selectedItem, itemScale, selectedItemRadius, b, directionCount } = selectorData;
+  const { selectedEchoId, getEchoIndex, itemScale, selectedItemRadius, b, directionCount } = selectorData;
+
+  const selectedIndex = getEchoIndex(selectedEchoId);
+  const index = getEchoIndex(echoId);
 
   function computeOpacity(index: number) {
-    const distance = Math.abs(selectedItem - index);
+    const distance = Math.abs(selectedIndex - index);
     const linearFalloff = (2 / directionCount) * (1 - distance) + 2.2;
     return Math.pow(Math.max(linearFalloff, 0), 2);
   }
@@ -21,7 +24,7 @@ export default function SelectorOptionSpiral({ index }: { index: number }) {
   }
 
   function computePosition(index: number) {
-    const a = selectedItemRadius / Math.exp(b * getT(selectedItem));
+    const a = selectedItemRadius / Math.exp(b * getT(selectedIndex));
     const t = getT(index);
     const expbt = Math.exp(b * t);
     return {
@@ -32,12 +35,12 @@ export default function SelectorOptionSpiral({ index }: { index: number }) {
 
   const targetPosition = computePosition(index);
   const targetOpacity = computeOpacity(index);
-  const targetScale = Math.max(0, (0.8 + 0.035 * (index - selectedItem)) * 1.16 * itemScale);
+  const targetScale = Math.max(0, (0.8 + 0.035 * (index - selectedIndex)) * 1.16 * itemScale);
 
   return (
     <SelectorOptionSelfPositioning
-      index={index}
-      extraClassNames={index === selectedItem ? "selected" : ""}
+      echoId={echoId}
+      extraClassNames={index === selectedIndex ? "selected" : ""}
       extraStyles={{
         width: 128,
         height: 128,

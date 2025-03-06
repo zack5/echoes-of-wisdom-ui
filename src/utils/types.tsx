@@ -1,6 +1,7 @@
 export interface EchoData {
-    id: number;
-    name: string;
-    image: string;
+    category: string;
     cost: number;
+    image: string;
+    name: string;
+    type: string;
 }

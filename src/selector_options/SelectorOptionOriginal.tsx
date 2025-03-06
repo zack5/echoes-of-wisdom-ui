@@ -3,23 +3,23 @@ import { useSelectorData } from "../contexts/ContextSelector";
 import SelectorOptionSelfPositioning from "./SelectorOptionSelfPositioning";
 import { WIDTH, HEIGHT, GAP } from "./SelectorOptionConstants";
 
-export default function SelectorOptionOriginal({ index }: { index: number }) {
+export default function SelectorOptionOriginal({ echoId }: { echoId: string }) {
   const echoes = useEchoesData();
   const selectorData = useSelectorData();
   if (!echoes || !selectorData) {
     return null;
   }
-  const { selectedItem } = selectorData;
+  const { selectedEchoId, getEchoIndex } = selectorData;
 
   return (
     <SelectorOptionSelfPositioning
-      index={index}
+      echoId={echoId}
       extraClassNames=""
       extraStyles={{
         width: WIDTH,
         height: HEIGHT,
       }}
-      targetPosition={{ x: (index - selectedItem) * (WIDTH + GAP), y: 0 }}
+      targetPosition={{ x: (getEchoIndex(echoId) - getEchoIndex(selectedEchoId)) * (WIDTH + GAP), y: 0 }}
       targetOpacity={1}
       targetScale={1}
     />

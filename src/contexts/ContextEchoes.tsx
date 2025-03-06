@@ -5,17 +5,23 @@ import { EchoData } from '../utils/types';
 const EchoesContext = createContext(null);
 
 interface JsonData {
-  name: string;
+  category: string;
   cost: number;
+  name: string;
+  type: string;
 }
 
 export function EchoesProvider({ children }: { children: React.ReactNode }) {
-  const echoes = data.map((entry: JsonData, index: number) => ({
-    id: index,
-    name: entry.name,
-    image: `src/assets/echoes/128px-EoW_${entry.name.replace(/ /g, "_")}_Icon.png`,
-    cost: entry.cost,
-  }));
+  const echoes = data.reduce((result: Record<string, EchoData>, echo: JsonData) => {
+    result[echo.name] = {
+      category: echo.category,
+      cost: echo.cost,
+      image: `src/assets/echoes/128px-EoW_${echo.name.replace(/ /g, "_")}_Icon.png`,
+      name: echo.name,
+      type: echo.type,
+    };
+    return result;
+  }, {});
 
   return (
     <EchoesContext.Provider value={echoes}>
@@ -25,6 +31,6 @@ export function EchoesProvider({ children }: { children: React.ReactNode }) {
 }
 
 
-export function useEchoesData() : EchoData[] {
-  return useContext(EchoesContext) || [];
+export function useEchoesData() : Record<string, EchoData> {
+  return useContext(EchoesContext) || {};
 }

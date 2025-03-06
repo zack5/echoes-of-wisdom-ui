@@ -17,17 +17,21 @@ export default function SelectorControllerSpiral() {
   const { joystickPosition } = navigationData;
   const {
     itemCount,
-    selectedItem, setSelectedItem,
+    selectedEchoId, setSelectedEchoId,
     selectedItemRadius, setSelectedItemRadius,
     b, setB,
     directionCount, setDirectionCount,
-    itemScale, setItemScale
+    itemScale, setItemScale,
+    sortedEchoIds,
+    getEchoIndex,
   } = selectorData;
+
+  const selectedItem = getEchoIndex(selectedEchoId);
 
   const visibleWindow = directionCount * 4;
   const elements = Array.from({ length: itemCount }, (_, index) => index)
     .map((index) => (
-      <SelectorOptionSpiral key={index} index={index} />
+      <SelectorOptionSpiral key={index} echoId={sortedEchoIds[index]} />
     ))
     .filter((_, index) => Math.abs(index - selectedItem) <= visibleWindow / 2);
 
@@ -49,10 +53,11 @@ export default function SelectorControllerSpiral() {
         const result = Math.abs(spotInPrevRing - selectedItem) < Math.abs(spotInNextRing - selectedItem)
           ? spotInPrevRing
           : spotInNextRing;
-        setSelectedItem(Math.max(0, Math.min(result, itemCount - 1)));
+        const clampedResult = Math.max(0, Math.min(result, itemCount - 1));
+        setSelectedEchoId(sortedEchoIds[clampedResult]);
       }
     }
-  }, [joystickPosition, directionCount, selectedItem]);
+  }, [joystickPosition, directionCount, selectedEchoId, setSelectedEchoId, sortedEchoIds, getEchoIndex]);
 
   const parametersElements = (
     <>

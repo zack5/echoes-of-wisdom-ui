@@ -21,26 +21,28 @@ export default function SelectorControllerScrollingGrid() {
   }
 
   const { joystickPosition } = navigationData;
-  const { itemCount, selectedItem, setSelectedItem } = selectorData;
+  const { itemCount, selectedEchoId: selectedItem, setSelectedEchoId, getEchoIndex, getEchoId, sortedEchoIds } = selectorData;
 
   const numRows = Math.ceil(itemCount / GRID_COLUMNS);
 
   useJoystickGridNavigation({
     joystickPosition,
     itemCount,
-    setSelectedItem,
+    getEchoIndex,
+    getEchoId,
+    setSelectedEchoId,
     numRows,
     numColumns: GRID_COLUMNS,
   });
 
   const elements = Array.from({ length: itemCount }, (_, index) => index)
     .map((index) => (
-      <SelectorOption key={index} index={index} />
+      <SelectorOption key={index} echoId={sortedEchoIds[index]} />
     ))
 
-  const row = Math.floor(selectedItem / GRID_COLUMNS);
-  const col = selectedItem % GRID_COLUMNS;
-  console.log(row, col);
+  const selectedIndex = getEchoIndex(selectedItem);
+  const row = Math.floor(selectedIndex / GRID_COLUMNS);
+  const col = selectedIndex % GRID_COLUMNS;
 
   const targetGridX = -1 * (4 * (WIDTH + GAP) + WIDTH / 2);
   const targetGridY = -1 * (Math.min(Math.max(row, 1), numRows - 2) * (HEIGHT + GAP) + HEIGHT / 2);

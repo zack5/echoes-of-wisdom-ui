@@ -8,7 +8,9 @@ type Axis = "x" | "y";
 export function useJoystickGridNavigation({
   joystickPosition,
   itemCount,
-  setSelectedItem,
+  getEchoIndex,
+  getEchoId,
+  setSelectedEchoId,
   numRows = itemCount,
   numColumns = 1,
   useAcceleration = false,
@@ -17,7 +19,9 @@ export function useJoystickGridNavigation({
 }: {
   joystickPosition: { x: number, y: number },
   itemCount: number,
-  setSelectedItem: (item: number | ((prev: number) => number)) => void,
+  getEchoIndex: (echoId: string) => number,
+  getEchoId: (index: number) => string,
+  setSelectedEchoId: (item: string | ((prev: string) => string)) => void,
   numRows?: number,
   numColumns?: number,
   useAcceleration?: boolean,
@@ -53,35 +57,43 @@ export function useJoystickGridNavigation({
   };
 
   const increment = (axis: Axis) => {
-    setSelectedItem((prev) => {
+    setSelectedEchoId((prev) => {
+      const prevIndex = getEchoIndex(prev);
       const change = isHoldingRef.current;
-      const { row, col } = getCoords(prev);
+      const { row, col } = getCoords(prevIndex);
+      
+      let nextIndex = prevIndex;
       if (axis === "x") {
-        const next = getIndex(row, clamp(col + change, 0, numColumns - 1));
-        return clamp(next, 0, itemCount - 1);
+        nextIndex = getIndex(row, clamp(col + change, 0, numColumns - 1));
+        nextIndex = clamp(nextIndex, 0, itemCount - 1);
       } else {
-        const next = getIndex(clamp(row + change, 0, numRows - 1), col);
-        if (next < 0 || next >= itemCount) return prev;
-        return next;
+        nextIndex = getIndex(clamp(row + change, 0, numRows - 1), col);
+        nextIndex = clamp(nextIndex, 0, itemCount - 1);
       }
+
+      return getEchoId(nextIndex);
     });
   };
 
   const incrementWithWrapping = (axis: Axis) => {
-    setSelectedItem((prev) => {
+    setSelectedEchoId((prev) => {
+      const prevIndex = getEchoIndex(prev);
       const change = isHoldingRef.current;
-      const { row, col } = getCoords(prev);
+      const { row, col } = getCoords(prevIndex);
+
+      let nextIndex = prevIndex;
       if (axis === "x") {
-        const next = getIndex(row, wrap(col + change, 0, numColumns));
-        if (next >= itemCount) return getIndex(row, 0);
-        return next;
+        nextIndex = getIndex(row, wrap(col + change, 0, numColumns));
+        if (nextIndex >= itemCount) nextIndex = getIndex(row, 0);
+        return getEchoId(nextIndex);
       } else {
-        let next = getIndex(wrap(row + change, 0, numRows), col);
-        if (next >= itemCount) {
-          if (change < 0) next = getIndex(numRows - 2, col);
-          else next = getIndex(0, col);
+        nextIndex = getIndex(wrap(row + change, 0, numRows), col);
+        if (nextIndex >= itemCount) {
+          if (change < 0) nextIndex = getIndex(numRows - 2, col);
+          else nextIndex = getIndex(0, col);
         }
-        return Math.max(0, next);
+
+        return getEchoId(nextIndex);
       }
     });
   };
@@ -140,5 +152,5 @@ export function useJoystickGridNavigation({
         stopIncrement();
       }
     };
-  }, [joystickPosition, setSelectedItem]);
+  }, [joystickPosition, setSelectedEchoId]);
 }

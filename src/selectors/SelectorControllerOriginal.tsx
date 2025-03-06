@@ -18,12 +18,14 @@ export default function SelectorControllerOriginal({useAcceleration = false}: {u
   }
 
   const { joystickPosition } = navigationData;
-  const { itemCount, selectedItem, setSelectedItem, acceleration, setAcceleration, minStepDuration, setMinStepDuration } = selectorData;
+  const { sortedEchoIds, getEchoIndex, getEchoId, itemCount, selectedEchoId, setSelectedEchoId, acceleration, setAcceleration, minStepDuration, setMinStepDuration } = selectorData;
 
   useJoystickGridNavigation({
     joystickPosition,
     itemCount,
-    setSelectedItem,
+    getEchoIndex,
+    getEchoId,
+    setSelectedEchoId,
     numRows: 1,
     numColumns: itemCount,
     useAcceleration,
@@ -31,10 +33,12 @@ export default function SelectorControllerOriginal({useAcceleration = false}: {u
     minStepDuration,
   });
 
+  const selectedItem = getEchoIndex(selectedEchoId);
+
   const visibleWindow = useAcceleration ? itemCount * 0.8 : 30;
   const elements = Array.from({ length: itemCount }, (_, index) => index)
     .map((index) => (
-      <SelectorOptionOriginal key={index} index={index} />
+      <SelectorOptionOriginal key={index} echoId={sortedEchoIds[index]} />
     ))
     .filter((_, index) => Math.abs(index - selectedItem) <= visibleWindow / 2);
 

@@ -4,9 +4,9 @@ import { useSelectorData } from "../contexts/ContextSelector";
 
 import costTriangle from "../assets/textures/cost-triangle.png";
 
-export default function SelectorOptionSelfPositioning({ index, extraClassNames, extraStyles, targetPosition, targetOpacity, targetScale,  }
+export default function SelectorOptionSelfPositioning({ echoId, extraClassNames, extraStyles, targetPosition, targetOpacity, targetScale,  }
   : {
-    index: number,
+    echoId: string,
     extraClassNames: string,
     extraStyles: React.CSSProperties,
     targetPosition: { x: number, y: number },
@@ -64,14 +64,14 @@ export default function SelectorOptionSelfPositioning({ index, extraClassNames, 
     return null;
   }
 
-  const cost = echoes[index].cost;
+  const cost = echoes[echoId].cost;
   const costTriangleElements = Array.from({ length: cost }, (_, index) => {
     const rotation = (cost - 2 * index - 1) * -7;
     const yOffset = 0.008 * (Math.abs(rotation) ** 2.02);
     const margin = -7 - 0.5 * (Math.abs(cost - 2 * index - 1));
     return (
       <img 
-        key={`${echoes[index].name}-cost-triangle-${index}`}
+        key={`${echoes[echoId].name}-cost-triangle-${index}`}
         src={costTriangle} 
         alt="triangle" 
         style={{ 
@@ -83,7 +83,7 @@ export default function SelectorOptionSelfPositioning({ index, extraClassNames, 
   });
 
   return (
-    <div key={echoes[index].name}
+    <div key={echoes[echoId].name}
       className={`selector-option ${extraClassNames}`}
       style={{
         ...extraStyles,
@@ -97,7 +97,7 @@ export default function SelectorOptionSelfPositioning({ index, extraClassNames, 
       <div className="cost-triangle-container">
         {costTriangleElements}
       </div>
-      <img src={`${echoes[index].image}`} alt={echoes[index].name} style={{ top: `5%` }} />
+      <img src={`${echoes[echoId].image}`} alt={echoes[echoId].name} style={{ top: `5%` }} />
     </div>
   );
 }
