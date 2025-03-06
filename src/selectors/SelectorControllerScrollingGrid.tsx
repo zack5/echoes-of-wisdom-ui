@@ -6,6 +6,7 @@ import { useSelectorData } from "../contexts/ContextSelector";
 
 import EchoTitle from "../components/EchoTitle";
 import SelectorLayout from "../components/SelectorLayout";
+import SortDisplay from "../components/SortDisplay";
 
 import SelectorOption from "../selector_options/SelectorOption";
 import { WIDTH, HEIGHT, GRID_COLUMNS, GAP } from "../selector_options/SelectorOptionConstants";
@@ -81,6 +82,11 @@ export default function SelectorControllerScrollingGrid() {
       <EchoTitle
         extraStyles={{
           bottom: "-500px",
+        }}
+      />
+      <SortDisplay
+        extraStyles={{
+          bottom: "-585px",
         }}
       />
       <motion.div

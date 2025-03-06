@@ -1,5 +1,6 @@
-import { createContext, useContext, useState, useMemo } from 'react';
+import { createContext, useContext, useState, useMemo, useEffect } from 'react';
 import { useEchoesData } from './ContextEchoes';
+import { SortType } from '../utils/types';
 
 interface SelectorContextType {
   itemCount: number;
@@ -21,6 +22,8 @@ interface SelectorContextType {
   sortedEchoIds: string[];
   getEchoIndex: (echoId: string) => number;
   getEchoId: (index: number) => string;
+  sortType: SortType;
+  setSortType: (sortType: SortType | ((prev: SortType) => SortType)) => void;
 }
 
 const SelectorContext = createContext<SelectorContextType | null>(null);
@@ -31,6 +34,14 @@ export function SelectorProvider({ children }: { children: React.ReactNode }) {
     return null;
   }
 
+  const sortFunctions = {
+    [SortType.LastUsed]: (a: string, b: string) => echoes[a].lastUsed - echoes[b].lastUsed,
+    [SortType.MostUsed]: (a: string, b: string) => echoes[b].timesUsed - echoes[a].timesUsed,
+    [SortType.LastLearned]: (a: string, b: string) => echoes[a].lastLearned - echoes[b].lastLearned,
+    [SortType.Cost]: (a: string, b: string) => echoes[b].cost - echoes[a].cost,
+    [SortType.Type]: (a: string, b: string) => echoes[a].startingOrder - echoes[b].startingOrder,
+  }
+
   const [itemCount, setItemCount] = useState<number>(Object.keys(echoes).length);
   const [itemScale, setItemScale] = useState<number>(1);
   const [selectedItemRadius, setSelectedItemRadius] = useState<number>(240);
@@ -38,7 +49,8 @@ export function SelectorProvider({ children }: { children: React.ReactNode }) {
   const [directionCount, setDirectionCount] = useState<number>(12);
   const [acceleration, setAcceleration] = useState<number>(0.15);
   const [minStepDuration, setMinStepDuration] = useState<number>(10);
-  const sortedEchoIds = useMemo(() => Object.keys(echoes), [echoes, /* Sorting condition goes here */]);
+  const [sortType, setSortType] = useState<SortType>(SortType.Type);
+  const sortedEchoIds = useMemo(() => Object.keys(echoes).sort(sortFunctions[sortType]), [echoes, sortType]);
   const [selectedEchoId, setSelectedEchoId] = useState<string>(() => sortedEchoIds[0]);
   
   function getEchoIndex(echoId: string) {
@@ -48,6 +60,28 @@ export function SelectorProvider({ children }: { children: React.ReactNode }) {
   function getEchoId(index: number) {
     return sortedEchoIds[index];
   }
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "y") {
+        setSortType((prev) => {
+          const values = Object.values(SortType);
+          const currentIndex = values.indexOf(prev);
+          const nextIndex = (currentIndex + 1) % values.length;
+          return values[nextIndex];
+        });
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
+  useEffect(() => {
+    setSelectedEchoId(sortedEchoIds[0]);
+  }, [sortType]);
 
   return (
     <SelectorContext.Provider value={{
@@ -70,6 +104,8 @@ export function SelectorProvider({ children }: { children: React.ReactNode }) {
       sortedEchoIds: sortedEchoIds,
       getEchoIndex,
       getEchoId,
+      sortType,
+      setSortType,
     }}>
       <>
         {children}

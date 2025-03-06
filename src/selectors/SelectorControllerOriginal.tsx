@@ -4,6 +4,7 @@ import { useSelectorData } from "../contexts/ContextSelector";
 import EchoTitle from "../components/EchoTitle";
 import PropertySlider from "../components/PropertySlider";
 import SelectorLayout from "../components/SelectorLayout";
+import SortDisplay from "../components/SortDisplay";
 
 import SelectorOptionOriginal from "../selector_options/SelectorOptionOriginal";
 import { WIDTH, HEIGHT } from "../selector_options/SelectorOptionConstants";
@@ -50,6 +51,7 @@ export default function SelectorControllerOriginal({useAcceleration = false}: {u
           bottom: "-230px",
         }}
       />
+      <SortDisplay />
       <div
         className="selected"
         style={{

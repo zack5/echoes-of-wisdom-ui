@@ -12,13 +12,17 @@ interface JsonData {
 }
 
 export function EchoesProvider({ children }: { children: React.ReactNode }) {
-  const echoes = data.reduce((result: Record<string, EchoData>, echo: JsonData) => {
+  const echoes = data.reduce((result: Record<string, EchoData>, echo: JsonData, index: number) => {
     result[echo.name] = {
       category: echo.category,
       cost: echo.cost,
       image: `src/assets/echoes/128px-EoW_${echo.name.replace(/ /g, "_")}_Icon.png`,
       name: echo.name,
       type: echo.type,
+      lastUsed: Math.random(),
+      lastLearned: Math.random(),
+      timesUsed: Math.random(),
+      startingOrder: index,
     };
     return result;
   }, {});

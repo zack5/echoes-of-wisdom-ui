@@ -5,6 +5,8 @@ import { useSelectorData } from "../contexts/ContextSelector";
 import EchoTitle from "../components/EchoTitle";
 import PropertySlider from "../components/PropertySlider";
 import SelectorLayout from "../components/SelectorLayout";
+import SortDisplay from "../components/SortDisplay";
+
 import SelectorOptionSpiral from "../selector_options/SelectorOptionSpiral";
 
 export default function SelectorControllerSpiral() {
@@ -102,8 +104,13 @@ export default function SelectorControllerSpiral() {
       <EchoTitle
         extraStyles={{
           bottom: "-430px",
-        }
-        } />
+        }}
+      />
+      <SortDisplay
+        extraStyles={{
+          bottom: "-582px",
+        }}
+      />
     </>
   )
 

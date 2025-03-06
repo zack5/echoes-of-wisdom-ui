@@ -6,7 +6,8 @@
   --color-surface-a10: #282828;
   --color-text: #ffffffe6;
   --color-link: #a4a4a4;
-
+  --color-game-text: #f8e5c5;
+  
   --header-height: 40px;
   --content-margins: 20px;
 
@@ -236,17 +237,15 @@ footer {
   margin-inline: -7px;
 }
 
-/* GRID */
-
 /* ECHO TITLE */
 
 .echo-title {
   position: absolute;
-  bottom: -400px;
+  bottom: -230px;
   width: 1920px;
   height: 74px;
   transform: translate(-50%, -50%);
-  color: white;
+  color: var(--color-game-text);
   z-index: 101;
 }
 
@@ -256,6 +255,64 @@ footer {
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 32px;
+}
+
+/* SORT DISPLAY */
+
+.sort-display-container {
+  position: absolute;
+  left: 0;
+  bottom: -390px;
+  width: 1920px;
+  transform: translate(-50%, -50%);
+  color: var(--color-game-text);
+  display: flex;
+  flex-direction: row;
+  z-index: 101;
+}
+
+.sort-display {
+  width: 553px;
+  height: 118px;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+}
+
+.sort-display img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: inherit;
+  height: inherit;
+}
+
+.sort-display-option {
+  margin-right: 25px;
+  margin-block: 12px;
+  font-size: 2rem;
+  z-index: 102;
+}
+
+.sort-display-pips {
+  margin-right: 30px;
+  margin-top: 14px;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  z-index: 102;
+}
+
+.pip {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid rgb(184, 184, 184);
+}
+
+.pip-selected {
+  border: none;
+  background-color: white;
 }
 
 /* SLIDER */
