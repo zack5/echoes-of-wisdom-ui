@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useMemo, useEffect } from 'react';
+import { createContext, useContext, useState, useMemo, useEffect, useRef } from 'react';
 import { useEchoesData } from './ContextEchoes';
 import { SortType } from '../utils/types';
 
@@ -50,25 +50,30 @@ export function SelectorProvider({ children }: { children: React.ReactNode }) {
   const [acceleration, setAcceleration] = useState<number>(0.15);
   const [minStepDuration, setMinStepDuration] = useState<number>(10);
   const [sortType, setSortType] = useState<SortType>(SortType.Type);
-  const sortedEchoIds = useMemo(() => Object.keys(echoes).sort(sortFunctions[sortType]), [echoes, sortType]);
-  const [selectedEchoId, setSelectedEchoId] = useState<string>(() => sortedEchoIds[0]);
+  const sortedEchoIds = useRef(useMemo(() => Object.keys(echoes).sort(sortFunctions[sortType]), [echoes, sortType]));
+  const [selectedEchoId, setSelectedEchoId] = useState<string>(() => sortedEchoIds.current[0]);
   
   function getEchoIndex(echoId: string) {
-    return sortedEchoIds.indexOf(echoId);
+    return sortedEchoIds.current.indexOf(echoId);
   }
 
   function getEchoId(index: number) {
-    return sortedEchoIds[index];
+    return sortedEchoIds.current[index];
   }
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "y") {
+        console.log("y");
         setSortType((prev) => {
           const values = Object.values(SortType);
           const currentIndex = values.indexOf(prev);
           const nextIndex = (currentIndex + 1) % values.length;
-          return values[nextIndex];
+          const result = values[nextIndex];
+          sortedEchoIds.current = Object.keys(echoes).sort(sortFunctions[result]);
+          console.log(sortedEchoIds.current);
+          setSelectedEchoId(sortedEchoIds.current[0]);
+          return result;
         });
       }
     };
@@ -78,10 +83,6 @@ export function SelectorProvider({ children }: { children: React.ReactNode }) {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, []);
-
-  useEffect(() => {
-    setSelectedEchoId(sortedEchoIds[0]);
-  }, [sortType]);
 
   return (
     <SelectorContext.Provider value={{
@@ -101,7 +102,7 @@ export function SelectorProvider({ children }: { children: React.ReactNode }) {
       setAcceleration,
       minStepDuration,
       setMinStepDuration,
-      sortedEchoIds: sortedEchoIds,
+      sortedEchoIds: sortedEchoIds.current,
       getEchoIndex,
       getEchoId,
       sortType,
