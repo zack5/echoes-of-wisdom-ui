@@ -300,3 +300,56 @@ footer {
   position: relative;
   cursor: grab;
 }
+
+
+/* ABOUT */
+
+.about-page-container {
+  width: 100%;
+  max-width: 800px;
+  margin-inline: auto;
+  
+  display: flex;
+  flex-direction: column;
+}
+
+.about-me-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.my-image {
+  border-radius: 50%;
+  height: 8rem;
+}
+
+.about-me-text > h2, ul {
+  margin-block: 0;
+}
+
+.about-me-text > ul {
+  padding: 0;
+  list-style: none;
+}
+
+.about-me-text > ul > li {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.about-me-text-icon {
+  width: 1rem;
+  height: 1.25rem;
+}
+
+.contact-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.2rem;
+}
