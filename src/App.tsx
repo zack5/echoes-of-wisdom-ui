@@ -23,6 +23,9 @@ function App() {
                 <Route path="/" element={<Layout />} >
                   <Route element={<SelectorChoice />} >
                     <Route index element={<SelectorOriginal />} />
+                    <Route path="acceleration" element={<SelectorOriginal useAcceleration={true} />} />
+                    <Route path="grid" element={<SelectorSpiral />} />
+                    <Route path="bar" element={<SelectorSpiral />} />
                     <Route path="spiral" element={<SelectorSpiral />} />
                   </Route>
                   <Route path="*" element={<NotFound />} />

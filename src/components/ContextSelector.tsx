@@ -11,11 +11,15 @@ interface SelectorContextType {
   selectedItemRadius: number;
   setSelectedItemRadius: (selectedItemRadius: number | ((prev: number) => number)) => void;
   a: number;
-  setA: (a: number) => void;
+  setA: (a: number | ((prev: number) => number)) => void;
   b: number;
-  setB: (b: number) => void;
+  setB: (b: number | ((prev: number) => number)) => void;
   directionCount: number;
-  setDirectionCount: (directionCount: number) => void;
+  setDirectionCount: (directionCount: number | ((prev: number) => number)) => void;
+  acceleration: number;
+  setAcceleration: (acceleration: number | ((prev: number) => number)) => void;
+  minStepDuration: number;
+  setMinStepDuration: (minStepDuration: number | ((prev: number) => number)) => void;
 }
 
 const SelectorContext = createContext<SelectorContextType | null>(null);
@@ -33,7 +37,8 @@ export function SelectorProvider({ children }: { children: React.ReactNode }) {
   const [a, setA] = useState<number>(1);
   const [b, setB] = useState<number>(0.1);
   const [directionCount, setDirectionCount] = useState<number>(14);
-
+  const [acceleration, setAcceleration] = useState<number>(0.15);
+  const [minStepDuration, setMinStepDuration] = useState<number>(10);
   return (
     <SelectorContext.Provider value={{
       itemCount,
@@ -49,7 +54,11 @@ export function SelectorProvider({ children }: { children: React.ReactNode }) {
       b,
       setB,
       directionCount,
-      setDirectionCount
+      setDirectionCount,
+      acceleration,
+      setAcceleration,
+      minStepDuration,
+      setMinStepDuration
     }}>
       <>
         {children}

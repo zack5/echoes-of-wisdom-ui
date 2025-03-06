@@ -260,6 +260,11 @@ footer {
   margin-top: -10px;
 }
 
+.slider-sublabel {
+  font-size: 0.8rem;
+  color: var(--color-link);
+}
+
 .slider-container {
   position: relative;
   display: flex;

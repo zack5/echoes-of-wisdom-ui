@@ -49,8 +49,8 @@ export default function SelectorSpiral() {
 
   const settingsElements = (
     <>
-        <PropertySlider value={selectedItemRadius} setValue={setSelectedItemRadius} label="Selected Item Radius" min={1} max={500} step={10} />
-        <PropertySlider value={b} setValue={setB} label="b" min={0} max={1} step={0.01} isExponential={true} />
+        <PropertySlider value={selectedItemRadius} setValue={setSelectedItemRadius} label="Radius" min={1} max={500} step={10} />
+        <PropertySlider value={b} setValue={setB} label="Spiral Factor" min={0} max={1} step={0.01} />
         <PropertySlider value={directionCount} setValue={setDirectionCount} label="Direction Count" min={1} max={20} step={1} />
     </>
   )

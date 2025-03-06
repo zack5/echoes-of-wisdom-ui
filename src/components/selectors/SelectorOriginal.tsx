@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { useNavigationData } from "../ContextNavigation";
 import { useSelectorData } from "../ContextSelector";
 import EchoTitle from "../EchoTitle";
+import PropertySlider from "../PropertySlider";
 import SelectorLayout from "../SelectorLayout";
 import SelectorOptionOriginal from "../selector_options/SelectorOptionOriginal";
 import { WIDTH, HEIGHT } from "../selector_options/SelectorOptionConstants";
@@ -10,7 +11,7 @@ import { WIDTH, HEIGHT } from "../selector_options/SelectorOptionConstants";
 const INITIAL_DELAY = 430;
 const REPEAT_RATE = 80;
 
-export default function SelectorOriginal() {
+export default function SelectorOriginal({useAcceleration = false}: {useAcceleration?: boolean}) {
   const navigationData = useNavigationData();
   const selectorData = useSelectorData();
   const intervalRef = useRef<number | null>(null);
@@ -21,7 +22,7 @@ export default function SelectorOriginal() {
   }
 
   const { joystickPosition } = navigationData;
-  const { itemCount, selectedItem, setSelectedItem } = selectorData;
+  const { itemCount, selectedItem, setSelectedItem, acceleration, setAcceleration, minStepDuration, setMinStepDuration } = selectorData;
 
   const increment = () => {
     setSelectedItem((prev) => {
@@ -43,7 +44,7 @@ export default function SelectorOriginal() {
     });
   }
 
-  const visibleWindow = 20;
+  const visibleWindow = useAcceleration ? itemCount * 0.8 : 30;
   const elements = Array.from({ length: itemCount }, (_, index) => index)
     .map((index) => (
       <SelectorOptionOriginal key={index} index={index} />
@@ -53,11 +54,20 @@ export default function SelectorOriginal() {
   const startIncrement = () => {
     incrementWithWrapping();
 
+    let currentRepeatRate = REPEAT_RATE;
+    
     timeoutRef.current = window.setTimeout(() => {
       if (isHoldingRef.current) {
-        intervalRef.current = window.setInterval(() => {
+        const tick = () => {
           increment();
-        }, REPEAT_RATE);
+
+          if (useAcceleration) {
+            currentRepeatRate = Math.max(currentRepeatRate * (1 - acceleration), minStepDuration);
+          }
+          
+          intervalRef.current = window.setTimeout(tick, currentRepeatRate);
+        };
+        tick();
       }
     }, INITIAL_DELAY);
   }
@@ -114,7 +124,29 @@ export default function SelectorOriginal() {
     </>
   )
 
+  const settingsElements = useAcceleration ? (
+    <>
+      <PropertySlider
+        value={acceleration}
+        setValue={setAcceleration}
+        label="Acceleration"
+        min={0}
+        max={1}
+        step={0.01}
+      />
+      <PropertySlider
+        value={minStepDuration}
+        setValue={setMinStepDuration}
+        label="Min Step Duration (ms)"
+        subLabel="No acceleration is 80ms."
+        min={1}
+        max={80}
+        step={1}
+      />
+    </>
+  ) : null;
+
   return (
-    <SelectorLayout settingsElements={null} menuElements={menuElements} />
+    <SelectorLayout settingsElements={settingsElements} menuElements={menuElements} />
   )
 }
