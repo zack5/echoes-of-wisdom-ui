@@ -24,7 +24,8 @@ function App() {
                   <Route element={<SelectorChoice />} >
                     <Route index element={<SelectorControllerOriginal />} />
                     <Route path="acceleration" element={<SelectorControllerOriginal useAcceleration={true} />} />
-                    <Route path="grid" element={<SelectorControllerSpiral />} />
+                    <Route path="scrolling-grid" element={<SelectorControllerSpiral />} />
+                    <Route path="tabbed-grid" element={<SelectorControllerSpiral />} />
                     <Route path="bar" element={<SelectorControllerSpiral />} />
                     <Route path="spiral" element={<SelectorControllerSpiral />} />
                   </Route>
