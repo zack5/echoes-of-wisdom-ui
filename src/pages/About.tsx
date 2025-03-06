@@ -29,9 +29,9 @@ export default function About() {
           </ul>
         </div>
       </div>
-      <p>I loved playing Echoes of Wisdom, but I did not love linearly scrolling through all 127 echoes every time I needed to find one! Exploring other alternatives in this project was immensely satisfying.</p>
+      <p>I loved playing Echoes of Wisdom, but I did not love linearly scrolling through all 127 echoes every time I needed to find the one I wanted! Exploring other alternatives in this project was immensely satisfying.</p>
 
-      <p>Implementation is my own. This project was inspired by the fantastic video by Game Maker's Toolkit, who built many of these prototypes in Unity: <a href="Can I fix Zelda's UI using Unity">https://www.youtube.com/watch?v=e4vsgC41bYg</a></p>
+      <p>I implemented these prototypes using TypeScript and React. This project was inspired by the fantastic video by Game Maker's Toolkit, who built many of these prototypes in Unity: <a href="https://www.youtube.com/watch?v=e4vsgC41bYg">Can I fix Zelda's UI using Unity?</a></p>
 
       <h2>Contact</h2>
       <a href="mailto:isaac.cinquini@gmail.com">

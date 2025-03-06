@@ -25,6 +25,9 @@ export default function PropertySlider(
         onChange={(_, value) => {
           setValue(value as number);
         }}
+        sx={{
+          color: 'var(--color-accent)',
+        }}
       />
     </div>
   );

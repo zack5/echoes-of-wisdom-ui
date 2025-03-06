@@ -1,16 +1,10 @@
-import { NavLink, Link } from 'react-router-dom'
+import { NavLink, Link, useMatch, useResolvedPath, useLocation } from 'react-router-dom'
+
+import { getActiveNavLinkStyles } from '../utils/utils'
 
 export default function Header() {
-
-  const activeStyles = {
-    color: 'var(--color-accent)',
-    backgroundColor: 'transparent',
-    outline: '0'
-  }
-
-  function getActiveStyles({ isActive }: { isActive: boolean }) {
-    return isActive ? activeStyles : {}
-  }
+  const {pathname} = useLocation();
+  const isAboutPage = pathname === "/about";
 
   return (
     <header>
@@ -20,8 +14,8 @@ export default function Header() {
         </Link>
       </div>
       <div className='nav-container'>
-        <NavLink to="/" style={getActiveStyles}>Explore</NavLink>
-        <NavLink to="/about" style={getActiveStyles}>About</NavLink>
+        <NavLink to="/" style={() => getActiveNavLinkStyles({ isActive: !isAboutPage })} end>Prototypes</NavLink>
+        <NavLink to="/about" style={() => getActiveNavLinkStyles({ isActive: isAboutPage })}>About</NavLink>
       </div>
     </header>
   );
