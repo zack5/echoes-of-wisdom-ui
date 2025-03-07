@@ -8,9 +8,8 @@ type Axis = "x" | "y";
 export function useJoystickGridNavigation({
   joystickPosition,
   itemCount,
-  getEchoIndex,
-  getEchoId,
-  setSelectedEchoId,
+  setIndex,
+  onSetIndex,
   numRows = itemCount,
   numColumns = 1,
   useAcceleration = false,
@@ -19,9 +18,8 @@ export function useJoystickGridNavigation({
 }: {
   joystickPosition: { x: number, y: number },
   itemCount: number,
-  getEchoIndex: (echoId: string) => number,
-  getEchoId: (index: number) => string,
-  setSelectedEchoId: (item: string | ((prev: string) => string)) => void,
+  setIndex: (index: number | ((index: number) => number)) => void,
+  onSetIndex: (index: number) => void,
   numRows?: number,
   numColumns?: number,
   useAcceleration?: boolean,
@@ -57,44 +55,44 @@ export function useJoystickGridNavigation({
   };
 
   const increment = (axis: Axis) => {
-    setSelectedEchoId((prev) => {
-      const prevIndex = getEchoIndex(prev);
+    setIndex(index => {
       const change = isHoldingRef.current;
-      const { row, col } = getCoords(prevIndex);
+      const { row, col } = getCoords(index);
       
-      let nextIndex = prevIndex;
+      let nextIndex = index;
       if (axis === "x") {
         nextIndex = getIndex(row, clamp(col + change, 0, numColumns - 1));
         nextIndex = clamp(nextIndex, 0, itemCount - 1);
       } else {
         nextIndex = getIndex(clamp(row + change, 0, numRows - 1), col);
+        if (nextIndex >= itemCount) nextIndex -= numColumns;
         nextIndex = clamp(nextIndex, 0, itemCount - 1);
       }
 
-      return getEchoId(nextIndex);
+      onSetIndex(nextIndex);
+      return nextIndex;
     });
   };
 
   const incrementWithWrapping = (axis: Axis) => {
-    setSelectedEchoId((prev) => {
-      const prevIndex = getEchoIndex(prev);
+    setIndex(index => {
       const change = isHoldingRef.current;
-      const { row, col } = getCoords(prevIndex);
+      const { row, col } = getCoords(index);
 
-      let nextIndex = prevIndex;
+      let nextIndex = index;
       if (axis === "x") {
         nextIndex = getIndex(row, wrap(col + change, 0, numColumns));
         if (nextIndex >= itemCount) nextIndex = getIndex(row, 0);
-        return getEchoId(nextIndex);
       } else {
         nextIndex = getIndex(wrap(row + change, 0, numRows), col);
         if (nextIndex >= itemCount) {
           if (change < 0) nextIndex = getIndex(numRows - 2, col);
           else nextIndex = getIndex(0, col);
         }
-
-        return getEchoId(nextIndex);
       }
+
+      onSetIndex(nextIndex);
+      return nextIndex;
     });
   };
 
@@ -152,5 +150,5 @@ export function useJoystickGridNavigation({
         stopIncrement();
       }
     };
-  }, [joystickPosition, setSelectedEchoId]);
+  }, [joystickPosition, setIndex]);
 }

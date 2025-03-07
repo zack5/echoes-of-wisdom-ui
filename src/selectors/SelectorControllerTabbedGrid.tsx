@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 import { useEchoesData } from "../contexts/ContextEchoes";
@@ -22,16 +23,21 @@ export default function SelectorControllerScrollingGrid() {
   }
 
   const { joystickPosition } = navigationData;
-  const { itemCount, selectedEchoId: selectedItem, setSelectedEchoId, getEchoIndex, getEchoId, sortedEchoIds } = selectorData;
+  const { itemCount, selectedEchoId, setSelectedEchoId, getEchoIndex, getEchoId, sortedEchoIds } = selectorData;
+
+  const [_, setIndex] = useState(getEchoIndex(selectedEchoId));
 
   const numRows = Math.ceil(itemCount / GRID_COLUMNS);
+
+  function handleSetIndex(index: number) {
+    setSelectedEchoId(getEchoId(index));
+  }
 
   useJoystickGridNavigation({
     joystickPosition,
     itemCount,
-    getEchoIndex,
-    getEchoId,
-    setSelectedEchoId,
+    setIndex,
+    onSetIndex: handleSetIndex,
     numRows,
     numColumns: GRID_COLUMNS,
   });
@@ -41,7 +47,7 @@ export default function SelectorControllerScrollingGrid() {
       <SelectorOption key={index} echoId={sortedEchoIds[index]} />
     ))
 
-  const selectedIndex = getEchoIndex(selectedItem);
+  const selectedIndex = getEchoIndex(selectedEchoId);
   const row = Math.floor(selectedIndex / GRID_COLUMNS);
   const col = selectedIndex % GRID_COLUMNS;
 

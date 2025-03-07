@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 import { useNavigationData } from "../contexts/ContextNavigation";
 import { useSelectorData } from "../contexts/ContextSelector";
 
@@ -12,21 +14,27 @@ import { WIDTH, HEIGHT } from "../selector_options/SelectorOptionConstants";
 import { useJoystickGridNavigation } from "../hooks/useJoystickGridNavigation";
 
 export default function SelectorControllerOriginal({useAcceleration = false}: {useAcceleration?: boolean}) {
+  
   const navigationData = useNavigationData();
   const selectorData = useSelectorData();
   if (!selectorData || !navigationData) {
     return null;
   }
-
+  
   const { joystickPosition } = navigationData;
   const { sortedEchoIds, getEchoIndex, getEchoId, itemCount, selectedEchoId, setSelectedEchoId, acceleration, setAcceleration, minStepDuration, setMinStepDuration } = selectorData;
+  
+  const [_, setIndex] = useState(getEchoIndex(selectedEchoId));
+
+  function handleSetIndex(index: number) {
+    setSelectedEchoId(getEchoId(index));
+  }
 
   useJoystickGridNavigation({
     joystickPosition,
     itemCount,
-    getEchoIndex,
-    getEchoId,
-    setSelectedEchoId,
+    setIndex,
+    onSetIndex: handleSetIndex,
     numRows: 1,
     numColumns: itemCount,
     useAcceleration,
