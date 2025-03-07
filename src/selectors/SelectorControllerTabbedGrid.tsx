@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 import { useEchoesData } from "../contexts/ContextEchoes";
@@ -7,14 +7,13 @@ import { useSelectorData } from "../contexts/ContextSelector";
 
 import EchoTitle from "../components/EchoTitle";
 import SelectorLayout from "../components/SelectorLayout";
-import SortDisplay from "../components/SortDisplay";
 
 import SelectorOption from "../selector_options/SelectorOption";
 import { WIDTH, HEIGHT, GRID_COLUMNS, GAP } from "../selector_options/SelectorOptionConstants";
 
 import { useJoystickGridNavigation } from "../hooks/useJoystickGridNavigation";
 
-export default function SelectorControllerScrollingGrid() {
+export default function SelectorControllerTabbedGrid() {
   const echoesData = useEchoesData();
   const navigationData = useNavigationData();
   const selectorData = useSelectorData();
@@ -23,15 +22,55 @@ export default function SelectorControllerScrollingGrid() {
   }
 
   const { joystickPosition } = navigationData;
-  const { itemCount, selectedEchoId, setSelectedEchoId, getEchoIndex, getEchoId, sortedEchoIds } = selectorData;
+  const { selectedEchoId, setSelectedEchoId } = selectorData;
 
-  const [_, setIndex] = useState(getEchoIndex(selectedEchoId));
+  const categorySet = ["object", "object2", "bug", "plains", "flying", "aquatic", "monster"];
 
+  const [tabIndex, setTabIndex] = useState(categorySet.indexOf(echoesData[selectedEchoId].category));
+  
+  const echoeIdsByCategory = useMemo(() => {
+    return categorySet.reduce((acc, category) => {
+      acc[category] = Object.entries(echoesData)
+        .filter(([_, echo]) => echo.category === category)
+        .map(([id, _]) => id);
+      return acc;
+    }, {} as Record<string, string[]>);
+  }, [echoesData, categorySet]);
+  const currentEchoeIds = echoeIdsByCategory[categorySet[tabIndex]];
+
+  const [_, setIndex] = useState(() => currentEchoeIds.indexOf(selectedEchoId));
+
+  const itemCount = currentEchoeIds.length;
   const numRows = Math.ceil(itemCount / GRID_COLUMNS);
 
   function handleSetIndex(index: number) {
-    setSelectedEchoId(getEchoId(index));
+    setSelectedEchoId(currentEchoeIds[index]);
   }
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "e") {
+        setTabIndex((prev) => {
+          const newTabIndex = (prev + 1) % categorySet.length;
+          setIndex(0);
+          setSelectedEchoId(echoeIdsByCategory[categorySet[newTabIndex]][0]);
+          return newTabIndex;
+        });
+      } else if (event.key === "q") {
+        setTabIndex((prev) => {
+          const newTabIndex = (prev - 1 + categorySet.length) % categorySet.length;
+          setIndex(0);
+          setSelectedEchoId(echoeIdsByCategory[categorySet[newTabIndex]][0]);
+          return newTabIndex;
+        });
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [setTabIndex]);
 
   useJoystickGridNavigation({
     joystickPosition,
@@ -44,21 +83,19 @@ export default function SelectorControllerScrollingGrid() {
 
   const elements = Array.from({ length: itemCount }, (_, index) => index)
     .map((index) => (
-      <SelectorOption key={index} echoId={sortedEchoIds[index]} />
+      <SelectorOption key={index} echoId={currentEchoeIds[index]} />
     ))
 
-  const selectedIndex = getEchoIndex(selectedEchoId);
+  const selectedIndex = currentEchoeIds.indexOf(selectedEchoId);
   const row = Math.floor(selectedIndex / GRID_COLUMNS);
   const col = selectedIndex % GRID_COLUMNS;
 
-  const targetGridX = -1 * (4 * (WIDTH + GAP) + WIDTH / 2);
-  const targetGridY = -1 * (Math.min(Math.max(row, 1), numRows - 2) * (HEIGHT + GAP) + HEIGHT / 2);
-
   const gridWidth = GRID_COLUMNS * (WIDTH + GAP) - GAP;
+  const gridHeight = 3 * (HEIGHT + GAP) - GAP;
+
   const targetSelectedX = 1 * (col * (WIDTH + GAP)) - gridWidth / 2;
   const targetSelectedY = -1 * HEIGHT / 2
-    - (HEIGHT + GAP) * (row === 0 ? 1 : 0)
-    + (HEIGHT + GAP) * (row === numRows - 1 ? 1 : 0);
+    + (HEIGHT + GAP) * (row - 1);
 
   const transition = {
     duration: 0.3,
@@ -67,7 +104,7 @@ export default function SelectorControllerScrollingGrid() {
 
   const menuElements = (
     <>
-      <motion.div
+      <div
         className="scrolling-grid-container"
         style={{
           display: "grid",
@@ -75,24 +112,16 @@ export default function SelectorControllerScrollingGrid() {
           gridTemplateRows: `repeat(${numRows}, ${HEIGHT}px)`,
           gap: `${GAP}px`,
           position: "absolute",
+          transform: `translate(-50%, -50%)`,
+          width: gridWidth,
+          height: gridHeight,
         }}
-        initial={false}
-        animate={{
-          x: targetGridX,
-          y: targetGridY,
-        }}
-        transition={transition}
       >
         {elements}
-      </motion.div>
+      </div>
       <EchoTitle
         extraStyles={{
           bottom: "-500px",
-        }}
-      />
-      <SortDisplay
-        extraStyles={{
-          bottom: "-585px",
         }}
       />
       <motion.div

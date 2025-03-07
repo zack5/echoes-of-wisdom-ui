@@ -1,764 +1,891 @@
 [
   {
+    "id": "table",
     "name": "Table",
     "cost": 1,
     "type": "Table",
     "category": "object"
   },
   {
+    "id": "oldbed",
     "name": "Old bed",
     "cost": 1,
     "type": "Bed",
     "category": "object"
   },
   {
+    "id": "softbed",
     "name": "Soft Bed",
     "cost": 2,
     "type": "Bed",
     "category": "object"
   },
   {
+    "id": "zeldasbed",
     "name": "Zelda's Bed",
     "cost": 3,
     "type": "Bed",
     "category": "object"
   },
   {
+    "id": "decorativeshrub",
     "name": "Decorative Shrub",
     "cost": 1,
     "type": "Decorative Shrub",
     "category": "object"
   },
   {
+    "id": "woodenbox",
     "name": "Wooden Box",
     "cost": 1,
     "type": "Wooden Box",
     "category": "object"
   },
   {
+    "id": "pot",
     "name": "Pot",
     "cost": 1,
     "type": "Pot",
     "category": "object2"
   },
   {
+    "id": "hyrulecastlepot",
     "name": "Hyrule Castle Pot",
     "cost": 1,
     "type": "Pot",
     "category": "object2"
   },
   {
+    "id": "gerudopot",
     "name": "Gerudo Pot",
     "cost": 1,
     "type": "Pot",
     "category": "object2"
   },
   {
+    "id": "boulder",
     "name": "Boulder",
     "cost": 1,
     "type": "Rock",
     "category": "object"
   },
   {
+    "id": "rock",
     "name": "Rock",
     "cost": 1,
     "type": "Rock",
     "category": "object"
   },
   {
+    "id": "lavarock",
     "name": "Lava Rock",
     "cost": 4,
     "type": "Rock",
     "category": "object"
   },
   {
+    "id": "iceblock",
     "name": "Ice Block",
     "cost": 1,
     "type": "Block",
     "category": "object"
   },
   {
+    "id": "snowball",
     "name": "Snowball",
     "cost": 2,
     "type": "Snowball",
     "category": "object"
   },
   {
+    "id": "sign",
     "name": "Sign",
     "cost": 1,
     "type": "Sign",
     "category": "object2"
   },
   {
+    "id": "grilledfish",
     "name": "Grilled Fish",
     "cost": 1,
     "type": "Food",
     "category": "object2"
   },
   {
+    "id": "meat",
     "name": "Meat",
     "cost": 1,
     "type": "Food",
     "category": "object2"
   },
   {
+    "id": "rockroast",
     "name": "Rock Roast",
     "cost": 1,
     "type": "Food",
     "category": "object2"
   },
   {
+    "id": "stuffedtoy",
     "name": "Stuffed Toy",
     "cost": 1,
     "type": "Stuffed Toy",
     "category": "object2"
   },
   {
+    "id": "carrot",
     "name": "Carrot",
     "cost": 1,
     "type": "Food",
     "category": "object2"
   },
   {
+    "id": "waterblock",
     "name": "Water Block",
     "cost": 1,
     "type": "Block",
     "category": "object"
   },
   {
+    "id": "elephantstatue",
     "name": "Elephant Statue",
     "cost": 1,
     "type": "Statue",
     "category": "object2"
   },
   {
+    "id": "hawkstatue",
     "name": "Hawk Statue",
     "cost": 1,
     "type": "Statue",
     "category": "object2"
   },
   {
+    "id": "catstatue",
     "name": "Cat Statue",
     "cost": 1,
     "type": "Statue",
     "category": "object2"
   },
   {
+    "id": "snakestatue",
     "name": "Snake Statue",
     "cost": 1,
     "type": "Statue",
     "category": "object2"
   },
   {
+    "id": "ancientorb",
     "name": "Ancient Orb",
     "cost": 1,
     "type": "Ancient Orb",
     "category": "object2"
   },
   {
+    "id": "trampoline",
     "name": "Trampoline",
     "cost": 1,
     "type": "Trampoline",
     "category": "object"
   },
   {
+    "id": "windcannon",
     "name": "Wind Cannon",
     "cost": 2,
     "type": "Wind Cannon",
     "category": "object"
   },
   {
+    "id": "flyingtile",
     "name": "Flying Tile",
     "cost": 3,
     "type": "Flying Tile",
     "category": "object"
   },
   {
+    "id": "cloud",
     "name": "Cloud",
     "cost": 2,
     "type": "Cloud",
     "category": "object"
   },
   {
+    "id": "spikedroller",
     "name": "Spiked Roller",
     "cost": 4,
     "type": "Spiked Roller",
     "category": "object"
   },
   {
+    "id": "beetlemound",
     "name": "Beetle Mound",
     "cost": 3,
     "type": "Beetle",
     "category": "bug"
   },
   {
+    "id": "firework",
     "name": "Firework",
     "cost": 2,
     "type": "Firework",
     "category": "object2"
   },
   {
+    "id": "brazier",
     "name": "Brazier",
     "cost": 2,
     "type": "Brazier",
     "category": "object"
   },
   {
+    "id": "zol",
     "name": "Zol",
     "cost": 1,
     "type": "Zol",
-    "category": "plains"
+    "category": "bug"
   },
   {
+    "id": "ignizol",
     "name": "Ignizol",
     "cost": 2,
     "type": "Zol",
-    "category": "plains"
+    "category": "bug"
   },
   {
+    "id": "hydrozol",
     "name": "Hydrozol",
     "cost": 2,
     "type": "Zol",
-    "category": "plains"
+    "category": "bug"
   },
   {
+    "id": "buzzblob",
     "name": "Buzz Blob",
     "cost": 3,
     "type": "Buzz Blob",
-    "category": "plains"
+    "category": "bug"
   },
   {
+    "id": "spearmoblin",
     "name": "Spear Moblin",
     "cost": 2,
     "type": "Spear Moblin",
     "category": "monster"
   },
   {
+    "id": "spearmoblinlv2",
     "name": "Spear Moblin Lv. 2",
     "cost": 4,
     "type": "Spear Moblin",
     "category": "monster"
   },
   {
+    "id": "swordmoblin",
     "name": "Sword Moblin",
     "cost": 2,
     "type": "Sword Moblin",
     "category": "monster"
   },
   {
+    "id": "swordmoblinlv2",
     "name": "Sword Moblin Lv. 2",
     "cost": 4,
     "type": "Sword Moblin",
     "category": "monster"
   },
   {
+    "id": "swordmoblinlv3",
     "name": "Sword Moblin Lv. 3",
     "cost": 5,
     "type": "Sword Moblin",
     "category": "monster"
   },
   {
+    "id": "clubboarblin",
     "name": "Club Boarblin",
     "cost": 2,
     "type": "Club Boarblin",
     "category": "monster"
   },
   {
+    "id": "clubboarblinlv2",
     "name": "Club Boarblin Lv. 2",
     "cost": 4,
     "type": "Club Boarblin",
     "category": "monster"
   },
   {
+    "id": "boomerangboarblin",
     "name": "Boomerang Boarblin",
     "cost": 2,
     "type": "Boomerang Boarblin",
     "category": "monster"
   },
   {
+    "id": "boomerangboarblinlv2",
     "name": "Boomerang Boarblin Lv. 2",
     "cost": 4,
     "type": "Boomerang Boarblin",
     "category": "monster"
   },
   {
+    "id": "lynel",
     "name": "Lynel",
     "cost": 6,
     "type": "Lynel",
     "category": "monster"
   },
   {
+    "id": "lizalfos",
     "name": "Lizalfos",
     "cost": 3,
     "type": "Lizalfos",
     "category": "monster"
   },
   {
+    "id": "lizalfoslv2",
     "name": "Lizalfos Lv. 2",
     "cost": 4,
     "type": "Lizalfos",
     "category": "monster"
   },
   {
+    "id": "lizalfoslv3",
     "name": "Lizalfos Lv. 3",
     "cost": 5,
     "type": "Lizalfos",
     "category": "monster"
   },
   {
+    "id": "darknut",
     "name": "Darknut",
     "cost": 3,
     "type": "Darknut",
     "category": "monster"
   },
   {
+    "id": "darknutlv2",
     "name": "Darknut Lv. 2",
     "cost": 4,
     "type": "Darknut",
     "category": "monster"
   },
   {
+    "id": "darknutlv3",
     "name": "Darknut Lv. 3",
     "cost": 5,
     "type": "Darknut",
     "category": "monster"
   },
   {
+    "id": "armos",
     "name": "Armos",
     "cost": 2,
     "type": "Armos",
     "category": "monster"
   },
   {
+    "id": "ball-and-chaintrooper",
     "name": "Ball-and-Chain Trooper",
     "cost": 4,
     "type": "Ball-and-Chain Trooper",
     "category": "monster"
   },
   {
+    "id": "gibdo",
     "name": "Gibdo",
     "cost": 3,
     "type": "Gibdo",
     "category": "monster"
   },
   {
+    "id": "gibdolv2",
     "name": "Gibdo Lv. 2",
     "cost": 4,
     "type": "Gibdo",
     "category": "monster"
   },
   {
+    "id": "redead",
     "name": "ReDead",
     "cost": 3,
     "type": "ReDead",
     "category": "monster"
   },
   {
+    "id": "firewizzrobe",
     "name": "Fire Wizzrobe",
     "cost": 5,
     "type": "Wizzrobe",
     "category": "flying"
   },
   {
+    "id": "icewizzrobe",
     "name": "Ice Wizzrobe",
     "cost": 5,
     "type": "Wizzrobe",
     "category": "flying"
   },
   {
+    "id": "electricwizzrobe",
     "name": "Electric Wizzrobe",
     "cost": 5,
     "type": "Wizzrobe",
     "category": "flying"
   },
   {
+    "id": "caromadillo",
     "name": "Caromadillo",
     "cost": 2,
     "type": "Caromadillo",
     "category": "plains"
   },
   {
+    "id": "caromadillolv2",
     "name": "Caromadillo Lv. 2",
     "cost": 3,
     "type": "Caromadillo",
     "category": "plains"
   },
   {
+    "id": "rope",
     "name": "Rope",
     "cost": 1,
     "type": "Rope",
     "category": "plains"
   },
   {
+    "id": "tornando",
     "name": "Tornando",
     "cost": 2,
     "type": "Tornando",
     "category": "flying"
   },
   {
+    "id": "ribbitune",
     "name": "Ribbitune",
     "cost": 2,
     "type": "Frog",
     "category": "aquatic"
   },
   {
+    "id": "drippitune",
     "name": "Drippitune",
     "cost": 3,
     "type": "Frog",
     "category": "aquatic"
   },
   {
+    "id": "torchslug",
     "name": "Torch Slug",
     "cost": 3,
     "type": "Slug",
     "category": "bug"
   },
   {
+    "id": "freezeslug",
     "name": "Freeze Slug",
     "cost": 3,
     "type": "Slug",
     "category": "bug"
   },
   {
+    "id": "holmill",
     "name": "Holmill",
     "cost": 3,
     "type": "Holmill",
     "category": "plains"
   },
   {
+    "id": "wolfos",
     "name": "Wolfos",
     "cost": 3,
     "type": "Wolfos",
     "category": "plains"
   },
   {
+    "id": "whitewolfos",
     "name": "White Wolfos",
     "cost": 5,
     "type": "Wolfos",
     "category": "plains"
   },
   {
+    "id": "keese",
     "name": "Keese",
     "cost": 1,
     "type": "Keese",
     "category": "flying"
   },
   {
+    "id": "firekeese",
     "name": "Fire Keese",
     "cost": 4,
     "type": "Keese",
     "category": "flying"
   },
   {
+    "id": "icekeese",
     "name": "Ice Keese",
     "cost": 4,
     "type": "Keese",
     "category": "flying"
   },
   {
+    "id": "electrickeese",
     "name": "Electric Keese",
     "cost": 4,
     "type": "Keese",
     "category": "flying"
   },
   {
+    "id": "mothula",
     "name": "Mothula",
     "cost": 3,
     "type": "Mothula",
     "category": "flying"
   },
   {
+    "id": "mothulalv2",
     "name": "Mothula Lv. 2",
     "cost": 5,
     "type": "Mothula",
     "category": "flying"
   },
   {
+    "id": "needlefly",
     "name": "Needlefly",
     "cost": 2,
     "type": "Needlefly",
     "category": "flying"
   },
   {
+    "id": "albatrawl",
     "name": "Albatrawl",
     "cost": 2,
     "type": "Bird",
     "category": "flying"
   },
   {
+    "id": "crow",
     "name": "Crow",
     "cost": 2,
     "type": "Bird",
     "category": "flying"
   },
   {
+    "id": "beakon",
     "name": "Beakon",
     "cost": 3,
     "type": "Bird",
     "category": "flying"
   },
   {
+    "id": "guay",
     "name": "Guay",
     "cost": 3,
     "type": "Bird",
     "category": "flying"
   },
   {
+    "id": "octorok",
     "name": "Octorok",
     "cost": 1,
     "type": "Octorok",
     "category": "plains"
   },
   {
+    "id": "fireocto",
     "name": "Fire Octo",
     "cost": 2,
     "type": "Octorok",
     "category": "plains"
   },
   {
+    "id": "iceocto",
     "name": "Ice Octo",
     "cost": 2,
     "type": "Octorok",
     "category": "plains"
   },
   {
+    "id": "seaurchin",
     "name": "Sea Urchin",
     "cost": 1,
     "type": "Sea Urchin",
     "category": "aquatic"
   },
   {
+    "id": "sandcrab",
     "name": "Sand Crab",
     "cost": 1,
     "type": "Sand Crab",
     "category": "aquatic"
   },
   {
+    "id": "biri",
     "name": "Biri",
     "cost": 2,
     "type": "Biri",
     "category": "aquatic"
   },
   {
+    "id": "tangler",
     "name": "Tangler",
     "cost": 1,
     "type": "Tangler",
     "category": "aquatic"
   },
   {
+    "id": "tanglerlv2",
     "name": "Tangler Lv. 2",
     "cost": 2,
     "type": "Tangler",
     "category": "aquatic"
   },
   {
+    "id": "bombfish",
     "name": "Bombfish",
     "cost": 4,
     "type": "Bombfish",
     "category": "aquatic"
   },
   {
+    "id": "chompfin",
     "name": "Chompfin",
     "cost": 4,
     "type": "Chompfin",
     "category": "aquatic"
   },
   {
+    "id": "piranha",
     "name": "Piranha",
     "cost": 2,
     "type": "Piranha",
     "category": "aquatic"
   },
   {
+    "id": "sandpiranha",
     "name": "Sand Piranha",
     "cost": 2,
     "type": "Piranha",
     "category": "aquatic"
   },
   {
+    "id": "dekubaba",
     "name": "Deku Baba",
     "cost": 2,
     "type": "Deku Baba",
     "category": "plains"
   },
   {
+    "id": "biodekubaba",
     "name": "Bio Deku Baba",
     "cost": 3,
     "type": "Deku Baba",
     "category": "plains"
   },
   {
+    "id": "dekubabalv2",
     "name": "Deku Baba Lv. 2",
     "cost": 3,
     "type": "Deku Baba",
     "category": "plains"
   },
   {
+    "id": "peahat",
     "name": "Peahat",
     "cost": 3,
     "type": "Big Plant",
     "category": "plains"
   },
   {
+    "id": "giantgopongaflower",
     "name": "Giant Goponga Flower",
     "cost": 4,
     "type": "Big Plant",
     "category": "plains"
   },
   {
+    "id": "zirro",
     "name": "Zirro",
     "cost": 3,
     "type": "Zirro",
     "category": "flying"
   },
   {
+    "id": "ghirro",
     "name": "Ghirro",
     "cost": 2,
     "type": "Zirro",
     "category": "flying"
   },
   {
+    "id": "mini-moldorm",
     "name": "Mini-Moldorm",
     "cost": 2,
     "type": "Mini-Moldorm",
     "category": "bug"
   },
   {
+    "id": "strandtula",
     "name": "Strandtula",
     "cost": 2,
     "type": "Strandtula",
     "category": "bug"
   },
   {
+    "id": "crawltula",
     "name": "Crawltula",
     "cost": 3,
     "type": "Strandtula",
     "category": "bug"
   },
   {
+    "id": "babygohma",
     "name": "Baby Gohma",
     "cost": 2,
     "type": "Arachnid",
     "category": "bug"
   },
   {
+    "id": "beetle",
     "name": "Beetle",
     "cost": 1,
     "type": "Beetle",
     "category": "bug"
   },
   {
+    "id": "aruroda",
     "name": "Aruroda",
     "cost": 2,
     "type": "Arachnid",
     "category": "bug"
   },
   {
+    "id": "tektite",
     "name": "Tektite",
     "cost": 2,
     "type": "Tektite",
     "category": "bug"
   },
   {
+    "id": "tektitelv2",
     "name": "Tektite Lv. 2",
     "cost": 3,
     "type": "Tektite",
     "category": "bug"
   },
   {
+    "id": "hoarder",
     "name": "Hoarder",
     "cost": 3,
     "type": "Hoarder",
     "category": "bug"
   },
   {
+    "id": "poe",
     "name": "Poe",
     "cost": 4,
     "type": "Poe",
     "category": "flying"
   },
   {
+    "id": "moa",
     "name": "Moa",
     "cost": 3,
     "type": "Moa",
     "category": "flying"
   },
   {
+    "id": "goospecter",
     "name": "Goo Specter",
     "cost": 3,
     "type": "Goo Specter",
     "category": "flying"
   },
   {
+    "id": "ghini",
     "name": "Ghini",
     "cost": 1,
     "type": "Ghini",
     "category": "flying"
   },
   {
+    "id": "ghinilv2",
     "name": "Ghini Lv. 2",
     "cost": 3,
     "type": "Ghini",
-    "category": "bug"
+    "category": "flying"
   },
   {
+    "id": "leever",
     "name": "Leever",
     "cost": 2,
     "type": "Leever",
     "category": "plains"
   },
   {
+    "id": "pathblade",
     "name": "Pathblade",
     "cost": 1,
     "type": "Machine",
     "category": "plains"
   },
   {
+    "id": "gustmaster",
     "name": "Gustmaster",
     "cost": 3,
     "type": "Machine",
     "category": "object2"
   },
   {
+    "id": "tweelus",
     "name": "Tweelus",
     "cost": 2,
     "type": "Tweelus",
     "category": "plains"
   },
   {
+    "id": "tempertweelus",
     "name": "Temper Tweelus",
     "cost": 3,
     "type": "Tweelus",
     "category": "plains"
   },
   {
+    "id": "freezard",
     "name": "Freezard",
     "cost": 3,
     "type": "Ice Monster",
     "category": "plains"
   },
   {
+    "id": "snomaul",
     "name": "Snomaul",
     "cost": 3,
     "type": "Ice Monster",
     "category": "plains"
   },
   {
+    "id": "spark",
     "name": "Spark",
     "cost": 2,
     "type": "Spark",
     "category": "plains"
   },
   {
+    "id": "platboom",
     "name": "Platboom",
     "cost": 3,
     "type": "Machine",
     "category": "object2"
   },
   {
+    "id": "beamos",
     "name": "Beamos",
     "cost": 3,
     "type": "Machine",
     "category": "object2"
   }
- ]
+]

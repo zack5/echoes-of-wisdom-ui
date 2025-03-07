@@ -12,20 +12,21 @@ export function NavigationProvider({ children }: { children: React.ReactNode }) 
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "ArrowRight") {
+      if (event.key === "ArrowRight" || event.key === "d") {
         setJoystickPosition({ x: 100, y: 0 });
-      } else if (event.key === "ArrowLeft") {
+      } else if (event.key === "ArrowLeft" || event.key === "a") {
         setJoystickPosition({ x: -100, y: 0 });
-      } else if (event.key === "ArrowUp") {
+      } else if (event.key === "ArrowUp" || event.key === "w") {
         setJoystickPosition({ x: 0, y: -100 });
-      } else if (event.key === "ArrowDown") {
+      } else if (event.key === "ArrowDown" || event.key === "s") {
         setJoystickPosition({ x: 0, y: 100 });
       }
     };
 
     const handleKeyUp = (event: KeyboardEvent) => {
       if (event.key === "ArrowRight" || event.key === "ArrowLeft" 
-        || event.key === "ArrowUp" || event.key === "ArrowDown")
+        || event.key === "ArrowUp" || event.key === "ArrowDown"
+        || event.key === "d" || event.key === "a" || event.key === "w" || event.key === "s")
       {
         setJoystickPosition({ x: 0, y: 0 });
       }
