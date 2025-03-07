@@ -84,12 +84,18 @@ export function useJoystickGridNavigation({
       let nextIndex = index;
       if (axis === "x") {
         nextIndex = getIndex(row, wrap(col + change, 0, numColumns));
-        if (nextIndex >= itemCount) nextIndex = getIndex(row, 0);
+        if (nextIndex >= itemCount) {
+          if (change < 0) nextIndex = itemCount - 1;
+          else nextIndex = getIndex(row, 0);
+        }
       } else {
         nextIndex = getIndex(wrap(row + change, 0, numRows), col);
         if (nextIndex >= itemCount) {
           if (change < 0) nextIndex = getIndex(numRows - 2, col);
-          else nextIndex = getIndex(0, col);
+          else {
+            if (nextIndex < numRows * numColumns) nextIndex = itemCount - 1;
+            else nextIndex = getIndex(0, col);
+          }
         }
       }
 
