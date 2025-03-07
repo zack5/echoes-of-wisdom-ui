@@ -82,6 +82,8 @@ export default function SelectorControllerTabbedGrid() {
     .map((index) => (
       <SelectorOption key={index} echoId={currentEchoeIds[index]} />
     ))
+    
+  const componentYOffset = 80;
 
   const selectedIndex = currentEchoeIds.indexOf(selectedEchoId);
   const row = Math.floor(selectedIndex / GRID_COLUMNS);
@@ -92,7 +94,8 @@ export default function SelectorControllerTabbedGrid() {
 
   const targetSelectedX = 1 * (col * (WIDTH + GAP)) - gridWidth / 2;
   const targetSelectedY = -1 * HEIGHT / 2
-    + (HEIGHT + GAP) * (row - 1);
+    + (HEIGHT + GAP) * (row - 1)
+    + componentYOffset;
 
   const transition = {
     duration: 0.3,
@@ -105,6 +108,7 @@ export default function SelectorControllerTabbedGrid() {
     )
   })
 
+
   const menuElements = (
     <>
       <div
@@ -115,6 +119,7 @@ export default function SelectorControllerTabbedGrid() {
           gridTemplateRows: `repeat(${numRows}, ${HEIGHT}px)`,
           gap: `${GAP}px`,
           position: "absolute",
+          top: `${componentYOffset}px`,
           transform: `translate(-50%, -50%)`,
           width: gridWidth,
           height: gridHeight,
@@ -124,10 +129,10 @@ export default function SelectorControllerTabbedGrid() {
       </div>
       <EchoTitle
         extraStyles={{
-          top: "-400px",
+          top: `${-400 + componentYOffset}px`,
         }}
       />
-      <div className="tab-nav">
+      <div className="tab-nav" style={{ top: `${-332 + componentYOffset}px` }}>
         <KeyButton action="q" />
         <div className="selector-option tab-pips-container">
           {tabPips}
@@ -136,6 +141,7 @@ export default function SelectorControllerTabbedGrid() {
       </div>
       <motion.div
         className="selected"
+        key={`selected-grid-tab-${tabIndex}`}
         style={{
           position: "absolute",
           width: WIDTH,

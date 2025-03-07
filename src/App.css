@@ -320,7 +320,6 @@ footer {
 
 .tab-nav {
   position: absolute;
-  top: -330px;
   left: 50%;
   transform: translate(-50%, -50%);
 
