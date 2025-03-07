@@ -6,6 +6,7 @@ import { useNavigationData } from "../contexts/ContextNavigation";
 import { useSelectorData } from "../contexts/ContextSelector";
 
 import EchoTitle from "../components/EchoTitle";
+import KeyButton from "../components/KeyButton";
 import SelectorLayout from "../components/SelectorLayout";
 
 import SelectorOption from "../selector_options/SelectorOption";
@@ -98,6 +99,12 @@ export default function SelectorControllerTabbedGrid() {
     ease: "easeOut",
   }
 
+  const tabPips = categorySet.map((_, index) => {
+    return (
+      <div className={index === tabIndex ? "pip pip-selected" : "pip"} key={index} />
+    )
+  })
+
   const menuElements = (
     <>
       <div
@@ -117,9 +124,16 @@ export default function SelectorControllerTabbedGrid() {
       </div>
       <EchoTitle
         extraStyles={{
-          bottom: "-500px",
+          top: "-400px",
         }}
       />
+      <div className="tab-nav">
+        <KeyButton action="q" />
+        <div className="selector-option tab-pips-container">
+          {tabPips}
+        </div>
+        <KeyButton action="e" />
+      </div>
       <motion.div
         className="selected"
         style={{
@@ -140,6 +154,6 @@ export default function SelectorControllerTabbedGrid() {
   const parametersElements = null;
 
   return (
-    <SelectorLayout parametersElements={parametersElements} menuElements={menuElements} useMask={true}/>
+    <SelectorLayout parametersElements={parametersElements} menuElements={menuElements}/>
   )
 }

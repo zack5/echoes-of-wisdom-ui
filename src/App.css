@@ -315,6 +315,35 @@ footer {
   background-color: white;
 }
 
+
+/* TAB SELECTOR */
+
+.tab-nav {
+  position: absolute;
+  top: -330px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  z-index: 1002;
+  align-items: center;
+}
+
+.tab-nav > button {
+  font-size: 1.0rem;
+  transform: scale(1.3);
+}
+
+.tab-pips-container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  border-radius: 99px;
+  padding: 12px;
+}
+
 /* SLIDER */
 
 .slider {
