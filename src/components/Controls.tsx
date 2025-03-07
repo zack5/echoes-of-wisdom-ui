@@ -12,10 +12,12 @@ export default function Controls() {
   }
   const { joystickPosition, setJoystickPosition } = navigationData;
   const [canSort, setCanSort] = useState(true);
+  const [canTab, setCanTab] = useState(true);
   const pathname = useLocation().pathname;
 
   useEffect(() => {
     setCanSort(!!document.querySelector(".sort-display"));
+    setCanTab(!!document.querySelector(".uses-tab-left-right-actions"));
   }, [pathname]);
 
   return (
@@ -31,11 +33,11 @@ export default function Controls() {
           <div className="keyboard-control-instructions-container">
             <div className="keyboard-control-instructions">
               <p>Tab left:</p>
-              <KeyButton action="q" />
+              <KeyButton action="q" disabled={!canTab} />
             </div>
             <div className="keyboard-control-instructions">
               <p>Tab right:</p>
-              <KeyButton action="e" />
+              <KeyButton action="e" disabled={!canTab} />
             </div>
             <div className="keyboard-control-instructions">
               <p>Sort:</p>

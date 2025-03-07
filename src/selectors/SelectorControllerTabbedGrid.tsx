@@ -131,7 +131,7 @@ export default function SelectorControllerTabbedGrid() {
           top: `${-400 + componentYOffset}px`,
         }}
       />
-      <div className="tab-nav" style={{ top: `${-332 + componentYOffset}px` }}>
+      <div className="tab-nav uses-tab-left-right-actions" style={{ top: `${-332 + componentYOffset}px` }}>
         <KeyButton action="q" />
         <div className="selector-option tab-pips-container">
           {tabPips}
