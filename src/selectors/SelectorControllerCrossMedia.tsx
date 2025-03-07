@@ -31,6 +31,7 @@ export default function SelectorControllerCrossMedia() {
   const echoIdsPerType = useMemo(() => {
     return typeSet.map(type => Object.entries(echoesData)
       .filter(([_, echo]) => echo.type === type)
+      .sort(([_, a], [__, b]) => a.cost - b.cost)
       .map(([id, _]) => id)
     );
   }, [echoesData, typeSet]);
@@ -65,8 +66,14 @@ export default function SelectorControllerCrossMedia() {
     ease: "easeOut",
   }
 
+  const visibleWindow = 15;
+
   const elements = echoIdsPerType
     .map((echoIds, colIndex) => {
+      if (Math.abs(colIndex - crossMediaBarNavigationData.columnIndex) > visibleWindow) {
+        return <div/>;
+      }
+
       const y = crossMediaBarNavigationData.typeIndexes[colIndex]
         * -1 * (HEIGHT + GAP);
 

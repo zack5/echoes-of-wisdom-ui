@@ -31,14 +31,14 @@
     "id": "decorativeshrub",
     "name": "Decorative Shrub",
     "cost": 1,
-    "type": "Decorative Shrub",
+    "type": "Object",
     "category": "object"
   },
   {
     "id": "woodenbox",
     "name": "Wooden Box",
     "cost": 1,
-    "type": "Wooden Box",
+    "type": "Block",
     "category": "object"
   },
   {
@@ -94,49 +94,49 @@
     "id": "snowball",
     "name": "Snowball",
     "cost": 2,
-    "type": "Snowball",
+    "type": "Roller",
     "category": "object"
   },
   {
     "id": "sign",
     "name": "Sign",
     "cost": 1,
-    "type": "Sign",
+    "type": "Object",
     "category": "object2"
   },
   {
     "id": "grilledfish",
     "name": "Grilled Fish",
     "cost": 1,
-    "type": "Food",
+    "type": "Sidequest",
     "category": "object2"
   },
   {
     "id": "meat",
     "name": "Meat",
     "cost": 1,
-    "type": "Food",
+    "type": "Sidequest",
     "category": "object2"
   },
   {
     "id": "rockroast",
     "name": "Rock Roast",
     "cost": 1,
-    "type": "Food",
+    "type": "Sidequest",
     "category": "object2"
   },
   {
     "id": "stuffedtoy",
     "name": "Stuffed Toy",
     "cost": 1,
-    "type": "Stuffed Toy",
+    "type": "Sidequest",
     "category": "object2"
   },
   {
     "id": "carrot",
     "name": "Carrot",
     "cost": 1,
-    "type": "Food",
+    "type": "Sidequest",
     "category": "object2"
   },
   {
@@ -178,42 +178,42 @@
     "id": "ancientorb",
     "name": "Ancient Orb",
     "cost": 1,
-    "type": "Ancient Orb",
+    "type": "Sidequest",
     "category": "object2"
   },
   {
     "id": "trampoline",
     "name": "Trampoline",
     "cost": 1,
-    "type": "Trampoline",
+    "type": "Height",
     "category": "object"
   },
   {
     "id": "windcannon",
     "name": "Wind Cannon",
     "cost": 2,
-    "type": "Wind Cannon",
+    "type": "Thrust",
     "category": "object"
   },
   {
     "id": "flyingtile",
     "name": "Flying Tile",
     "cost": 3,
-    "type": "Flying Tile",
+    "type": "Thrust",
     "category": "object"
   },
   {
     "id": "cloud",
     "name": "Cloud",
     "cost": 2,
-    "type": "Cloud",
+    "type": "Height",
     "category": "object"
   },
   {
     "id": "spikedroller",
     "name": "Spiked Roller",
     "cost": 4,
-    "type": "Spiked Roller",
+    "type": "Roller",
     "category": "object"
   },
   {
@@ -227,42 +227,42 @@
     "id": "firework",
     "name": "Firework",
     "cost": 2,
-    "type": "Firework",
+    "type": "Fiery",
     "category": "object2"
   },
   {
     "id": "brazier",
     "name": "Brazier",
     "cost": 2,
-    "type": "Brazier",
+    "type": "Fiery",
     "category": "object"
   },
   {
     "id": "zol",
     "name": "Zol",
     "cost": 1,
-    "type": "Zol",
+    "type": "Blob",
     "category": "bug"
   },
   {
     "id": "ignizol",
     "name": "Ignizol",
     "cost": 2,
-    "type": "Zol",
+    "type": "Blob",
     "category": "bug"
   },
   {
     "id": "hydrozol",
     "name": "Hydrozol",
     "cost": 2,
-    "type": "Zol",
+    "type": "Blob",
     "category": "bug"
   },
   {
     "id": "buzzblob",
     "name": "Buzz Blob",
     "cost": 3,
-    "type": "Buzz Blob",
+    "type": "Blob",
     "category": "bug"
   },
   {
@@ -381,35 +381,35 @@
     "id": "armos",
     "name": "Armos",
     "cost": 2,
-    "type": "Armos",
+    "type": "Armored",
     "category": "monster"
   },
   {
     "id": "ball-and-chaintrooper",
     "name": "Ball-and-Chain Trooper",
     "cost": 4,
-    "type": "Ball-and-Chain Trooper",
+    "type": "Armored",
     "category": "monster"
   },
   {
     "id": "gibdo",
     "name": "Gibdo",
     "cost": 3,
-    "type": "Gibdo",
+    "type": "Undead",
     "category": "monster"
   },
   {
     "id": "gibdolv2",
     "name": "Gibdo Lv. 2",
     "cost": 4,
-    "type": "Gibdo",
+    "type": "Undead",
     "category": "monster"
   },
   {
     "id": "redead",
     "name": "ReDead",
     "cost": 3,
-    "type": "ReDead",
+    "type": "Undead",
     "category": "monster"
   },
   {
@@ -542,21 +542,21 @@
     "id": "mothula",
     "name": "Mothula",
     "cost": 3,
-    "type": "Mothula",
+    "type": "Winged Bug",
     "category": "flying"
   },
   {
     "id": "mothulalv2",
     "name": "Mothula Lv. 2",
     "cost": 5,
-    "type": "Mothula",
+    "type": "Winged Bug",
     "category": "flying"
   },
   {
     "id": "needlefly",
     "name": "Needlefly",
     "cost": 2,
-    "type": "Needlefly",
+    "type": "Winged Bug",
     "category": "flying"
   },
   {
@@ -612,21 +612,21 @@
     "id": "seaurchin",
     "name": "Sea Urchin",
     "cost": 1,
-    "type": "Sea Urchin",
+    "type": "Aquatic",
     "category": "aquatic"
   },
   {
     "id": "sandcrab",
     "name": "Sand Crab",
     "cost": 1,
-    "type": "Sand Crab",
+    "type": "Aquatic",
     "category": "aquatic"
   },
   {
     "id": "biri",
     "name": "Biri",
     "cost": 2,
-    "type": "Biri",
+    "type": "Aquatic",
     "category": "aquatic"
   },
   {
@@ -647,14 +647,14 @@
     "id": "bombfish",
     "name": "Bombfish",
     "cost": 4,
-    "type": "Bombfish",
+    "type": "Fish",
     "category": "aquatic"
   },
   {
     "id": "chompfin",
     "name": "Chompfin",
     "cost": 4,
-    "type": "Chompfin",
+    "type": "Fish",
     "category": "aquatic"
   },
   {
@@ -724,7 +724,7 @@
     "id": "mini-moldorm",
     "name": "Mini-Moldorm",
     "cost": 2,
-    "type": "Mini-Moldorm",
+    "type": "Crawlers",
     "category": "bug"
   },
   {
@@ -780,28 +780,28 @@
     "id": "hoarder",
     "name": "Hoarder",
     "cost": 3,
-    "type": "Hoarder",
+    "type": "Arachnid",
     "category": "bug"
   },
   {
     "id": "poe",
     "name": "Poe",
     "cost": 4,
-    "type": "Poe",
+    "type": "Spooky",
     "category": "flying"
   },
   {
     "id": "moa",
     "name": "Moa",
     "cost": 3,
-    "type": "Moa",
+    "type": "Spooky",
     "category": "flying"
   },
   {
     "id": "goospecter",
     "name": "Goo Specter",
     "cost": 3,
-    "type": "Goo Specter",
+    "type": "Spooky",
     "category": "flying"
   },
   {
@@ -822,7 +822,7 @@
     "id": "leever",
     "name": "Leever",
     "cost": 2,
-    "type": "Leever",
+    "type": "Crawlers",
     "category": "plains"
   },
   {

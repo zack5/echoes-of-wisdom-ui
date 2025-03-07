@@ -51,13 +51,13 @@ export function useJoystickCrossMediaBarNavigation({
       if (axis === "x") {
         return {
           ...prev,
-          columnIndex: clamp(prev.columnIndex + change, 0, typeCounts.length - 1),
+          columnIndex: wrap(prev.columnIndex + change, 0, typeCounts.length ),
         };
       } else {
         return {
           ...prev,
           typeIndexes: prev.typeIndexes.map(
-            (value, i) => i === prev.columnIndex ? clamp(value + change, 0, typeCounts[i] - 1) : value),
+            (value, i) => i === prev.columnIndex ? wrap(value + change, 0, typeCounts[i]) : value),
         };
       }
     });
