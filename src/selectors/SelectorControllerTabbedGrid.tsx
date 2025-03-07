@@ -50,19 +50,15 @@ export default function SelectorControllerTabbedGrid() {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "e") {
-        setTabIndex((prev) => {
-          const newTabIndex = (prev + 1) % categorySet.length;
-          setIndex(0);
-          setSelectedEchoId(echoeIdsByCategory[categorySet[newTabIndex]][0]);
-          return newTabIndex;
-        });
+        const newTabIndex = (tabIndex + 1) % categorySet.length;
+        setTabIndex(newTabIndex);
+        setIndex(0);
+        setSelectedEchoId(echoeIdsByCategory[categorySet[newTabIndex]][0]);
       } else if (event.key === "q") {
-        setTabIndex((prev) => {
-          const newTabIndex = (prev - 1 + categorySet.length) % categorySet.length;
-          setIndex(0);
-          setSelectedEchoId(echoeIdsByCategory[categorySet[newTabIndex]][0]);
-          return newTabIndex;
-        });
+        const newTabIndex = (tabIndex - 1 + categorySet.length) % categorySet.length;
+        setTabIndex(newTabIndex);
+        setIndex(0);
+        setSelectedEchoId(echoeIdsByCategory[categorySet[newTabIndex]][0]);
       }
     };
 
@@ -70,7 +66,7 @@ export default function SelectorControllerTabbedGrid() {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
-  }, [setTabIndex]);
+  }, [setTabIndex, tabIndex, categorySet, echoeIdsByCategory, setSelectedEchoId]);
 
   useJoystickGridNavigation({
     joystickPosition,

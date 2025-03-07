@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useNavigationData } from "../contexts/ContextNavigation";
 
 import Joystick from "./Joystick";
-
+import KeyButton from "./KeyButton";
 export default function Controls() {
   const navigationData = useNavigationData();
   if (!navigationData) {
@@ -17,11 +17,6 @@ export default function Controls() {
   useEffect(() => {
     setCanSort(!!document.querySelector(".sort-display"));
   }, [pathname]);
-
-  function triggerButton(button: string) {
-    const event = new KeyboardEvent("keydown", { key: button });
-    document.dispatchEvent(event);
-  }
 
   return (
 
@@ -36,15 +31,15 @@ export default function Controls() {
           <div className="keyboard-control-instructions-container">
             <div className="keyboard-control-instructions">
               <p>Tab left:</p>
-              <button onClick={() => triggerButton("Q")}>Q</button>
+              <KeyButton action="q" />
             </div>
             <div className="keyboard-control-instructions">
               <p>Tab right:</p>
-              <button onClick={() => triggerButton("E")}>E</button>
+              <KeyButton action="e" />
             </div>
             <div className="keyboard-control-instructions">
               <p>Sort:</p>
-              <button onClick={() => triggerButton("Y")} disabled={!canSort}>Y</button>
+              <KeyButton action="y" disabled={!canSort} />
             </div>
           </div>
         </div>
