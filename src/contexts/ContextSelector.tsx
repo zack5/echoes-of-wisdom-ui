@@ -64,14 +64,12 @@ export function SelectorProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "y") {
-        console.log("y");
         setSortType((prev) => {
           const values = Object.values(SortType);
           const currentIndex = values.indexOf(prev);
           const nextIndex = (currentIndex + 1) % values.length;
           const result = values[nextIndex];
           sortedEchoIds.current = Object.keys(echoes).sort(sortFunctions[result]);
-          console.log(sortedEchoIds.current);
           setSelectedEchoId(sortedEchoIds.current[0]);
           return result;
         });

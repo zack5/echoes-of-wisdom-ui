@@ -1,4 +1,4 @@
-import { NavLink, Link, useMatch, useResolvedPath, useLocation } from 'react-router-dom'
+import { NavLink, Link, useLocation } from 'react-router-dom'
 
 import { getActiveNavLinkStyles } from '../utils/utils'
 
