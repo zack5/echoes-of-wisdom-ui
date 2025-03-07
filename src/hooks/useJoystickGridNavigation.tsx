@@ -1,10 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { SortType } from "../utils/types";
 
-const INITIAL_DELAY = 430;
-const REPEAT_RATE = 80;
-
-type Axis = "x" | "y";
+import { useJoystickNavigation, Axis } from "./useJoystickNavigation";
 
 export function useJoystickGridNavigation({
   joystickPosition,
@@ -29,11 +26,6 @@ export function useJoystickGridNavigation({
 }) {
   const [hasMounted, setHasMounted] = useState(false);
 
-  const intervalRef = useRef<number | null>(null);
-  const timeoutRef = useRef<number | null>(null);
-  const axisRef = useRef<Axis>("x");
-  const isHoldingRef = useRef(0);
-
   const clamp = (value: number, min: number, max: number) => {
     return Math.max(min, Math.min(value, max));
   };
@@ -53,13 +45,8 @@ export function useJoystickGridNavigation({
     return row * numColumns + col;
   };
 
-  const getAxis = () => {
-    return Math.abs(joystickPosition.y) > Math.abs(joystickPosition.x) ? "y" : "x";
-  };
-
-  const increment = (axis: Axis) => {
+  const onIncrement = (axis: Axis, change: number) => {
     setIndex(index => {
-      const change = isHoldingRef.current;
       const { row, col } = getCoords(index);
       
       let nextIndex = index;
@@ -76,9 +63,8 @@ export function useJoystickGridNavigation({
     });
   };
 
-  const incrementWithWrapping = (axis: Axis) => {
+  const onIncrementWithWrapping = (axis: Axis, change: number) => {
     setIndex(index => {
-      const change = isHoldingRef.current;
       const { row, col } = getCoords(index);
 
       let nextIndex = index;
@@ -103,28 +89,14 @@ export function useJoystickGridNavigation({
     });
   };
 
-  const startIncrement = (axis: Axis) => {
-    incrementWithWrapping(axis);
-    let currentRepeatRate = REPEAT_RATE;
-
-    timeoutRef.current = setTimeout(() => {
-      if (isHoldingRef.current) {
-        const tick = () => {
-          increment(axis);
-          if (useAcceleration) {
-            currentRepeatRate = Math.max(currentRepeatRate * (1 - acceleration), minStepDuration);
-          }
-          intervalRef.current = setTimeout(tick, currentRepeatRate);
-        };
-        tick();
-      }
-    }, INITIAL_DELAY);
-  };
-
-  const stopIncrement = () => {
-    if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    if (intervalRef.current) clearTimeout(intervalRef.current);
-  };
+  useJoystickNavigation({
+    joystickPosition,
+    useAcceleration,
+    acceleration,
+    minStepDuration,
+    onIncrement,
+    onIncrementWithWrapping,
+  });
 
   useEffect(() => {
     if (!hasMounted) {
@@ -133,37 +105,4 @@ export function useJoystickGridNavigation({
     }
     setIndex(0);
   }, [sortType]);
-
-  useEffect(() => {
-    const axis = getAxis();
-    if (axis !== axisRef.current) {
-      axisRef.current = axis;
-      isHoldingRef.current = 0;
-      stopIncrement();
-    }
-
-    if (isHoldingRef.current != Math.sign(joystickPosition[axis])) {
-      isHoldingRef.current = 0;
-      stopIncrement();
-    }
-
-    const movementThreshold = 30;
-    if (joystickPosition.x**2 + joystickPosition.y**2 > movementThreshold**2) {
-      if (!isHoldingRef.current) {
-        isHoldingRef.current = Math.sign(joystickPosition[axisRef.current]);
-        startIncrement(axisRef.current);
-      }
-    } else {
-      if (isHoldingRef.current) {
-        isHoldingRef.current = 0;
-        stopIncrement();
-      }
-    }
-
-    return () => {
-      if (joystickPosition && Math.abs(joystickPosition[axisRef.current]) <= 0) {
-        stopIncrement();
-      }
-    };
-  }, [joystickPosition, setIndex]);
 }
