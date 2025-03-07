@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 import { useEchoesData } from "../contexts/ContextEchoes";
@@ -23,24 +23,24 @@ export default function SelectorControllerScrollingGrid() {
   }
 
   const { joystickPosition } = navigationData;
-  const { itemCount, selectedEchoId, setSelectedEchoId, getEchoIndex, getEchoId, sortedEchoIds } = selectorData;
+  const { itemCount, selectedEchoId, setSelectedEchoId, getEchoIndex, getEchoId, sortedEchoIds, sortType } = selectorData;
 
-  const [_, setIndex] = useState(getEchoIndex(selectedEchoId));
+  const [index, setIndex] = useState(getEchoIndex(selectedEchoId));
 
   const numRows = Math.ceil(itemCount / GRID_COLUMNS);
-
-  function handleSetIndex(index: number) {
-    setSelectedEchoId(getEchoId(index));
-  }
 
   useJoystickGridNavigation({
     joystickPosition,
     itemCount,
     setIndex,
-    onSetIndex: handleSetIndex,
     numRows,
     numColumns: GRID_COLUMNS,
+    sortType
   });
+
+  useEffect(() => {
+    setSelectedEchoId(getEchoId(index));
+  }, [index]);
 
   const elements = Array.from({ length: itemCount }, (_, index) => index)
     .map((index) => (
@@ -69,6 +69,7 @@ export default function SelectorControllerScrollingGrid() {
     <>
       <motion.div
         className="scrolling-grid-container"
+        key={`echoes-container-${sortType}`}
         style={{
           display: "grid",
           gridTemplateColumns: `repeat(${GRID_COLUMNS}, ${WIDTH}px)`,
@@ -97,6 +98,7 @@ export default function SelectorControllerScrollingGrid() {
       />
       <motion.div
         className="selected"
+        key={`selected-${sortType}`}
         style={{
           position: "absolute",
           width: WIDTH,

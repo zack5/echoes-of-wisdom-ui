@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { useNavigationData } from "../contexts/ContextNavigation";
 import { useSelectorData } from "../contexts/ContextSelector";
@@ -22,24 +22,24 @@ export default function SelectorControllerOriginal({useAcceleration = false}: {u
   }
   
   const { joystickPosition } = navigationData;
-  const { sortedEchoIds, getEchoIndex, getEchoId, itemCount, selectedEchoId, setSelectedEchoId, acceleration, setAcceleration, minStepDuration, setMinStepDuration } = selectorData;
+  const { sortedEchoIds, sortType, getEchoIndex, getEchoId, itemCount, selectedEchoId, setSelectedEchoId, acceleration, setAcceleration, minStepDuration, setMinStepDuration } = selectorData;
   
-  const [_, setIndex] = useState(getEchoIndex(selectedEchoId));
+  const [index, setIndex] = useState(getEchoIndex(selectedEchoId));
 
-  function handleSetIndex(index: number) {
+  useEffect(() => {
     setSelectedEchoId(getEchoId(index));
-  }
+  }, [index]);
 
   useJoystickGridNavigation({
     joystickPosition,
     itemCount,
     setIndex,
-    onSetIndex: handleSetIndex,
     numRows: 1,
     numColumns: itemCount,
     useAcceleration,
     acceleration,
     minStepDuration,
+    sortType,
   });
 
   const selectedItem = getEchoIndex(selectedEchoId);
@@ -53,7 +53,9 @@ export default function SelectorControllerOriginal({useAcceleration = false}: {u
 
   const menuElements = (
     <>
-      {elements}
+      <div key={`echoes-container-${sortType}`}>
+        {elements}
+      </div>
       <EchoTitle
         extraStyles={{
           bottom: "-230px",

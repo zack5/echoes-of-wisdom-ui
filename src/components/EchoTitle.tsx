@@ -10,8 +10,8 @@ export default function EchoTitle( {extraStyles}: {extraStyles: React.CSSPropert
     return null;
   }
 
-  const { selectedEchoId: selectedItem } = selectorData;
-  const echo = echoes[selectedItem];
+  const { selectedEchoId } = selectorData;
+  const echo = echoes[selectedEchoId];
 
   return (
     <div className="echo-title" style={extraStyles}>

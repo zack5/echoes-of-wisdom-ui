@@ -39,14 +39,14 @@ export default function SelectorControllerTabbedGrid() {
   }, [echoesData, categorySet]);
   const currentEchoeIds = echoeIdsByCategory[categorySet[tabIndex]];
 
-  const [_, setIndex] = useState(() => currentEchoeIds.indexOf(selectedEchoId));
+  const [index, setIndex] = useState(() => currentEchoeIds.indexOf(selectedEchoId));
 
   const itemCount = currentEchoeIds.length;
   const numRows = Math.ceil(itemCount / GRID_COLUMNS);
 
-  function handleSetIndex(index: number) {
+  useEffect(() => {
     setSelectedEchoId(currentEchoeIds[index]);
-  }
+  }, [index]);
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
@@ -73,7 +73,6 @@ export default function SelectorControllerTabbedGrid() {
     joystickPosition,
     itemCount,
     setIndex,
-    onSetIndex: handleSetIndex,
     numRows,
     numColumns: GRID_COLUMNS,
   });

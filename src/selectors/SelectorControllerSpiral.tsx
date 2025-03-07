@@ -26,6 +26,7 @@ export default function SelectorControllerSpiral() {
     itemScale, setItemScale,
     sortedEchoIds,
     getEchoIndex,
+    sortType,
   } = selectorData;
 
   const selectedItem = getEchoIndex(selectedEchoId);
@@ -100,7 +101,9 @@ export default function SelectorControllerSpiral() {
 
   const menuElements = (
     <>
-      {elements}
+      <div key={`echoes-container-${sortType}`}>
+        {elements}
+      </div>
       <EchoTitle
         extraStyles={{
           bottom: "-430px",

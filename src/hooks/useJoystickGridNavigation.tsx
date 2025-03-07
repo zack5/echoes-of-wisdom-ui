@@ -1,4 +1,5 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { SortType } from "../utils/types";
 
 const INITIAL_DELAY = 430;
 const REPEAT_RATE = 80;
@@ -9,23 +10,25 @@ export function useJoystickGridNavigation({
   joystickPosition,
   itemCount,
   setIndex,
-  onSetIndex,
   numRows = itemCount,
   numColumns = 1,
   useAcceleration = false,
   acceleration = 0,
   minStepDuration = 80,
+  sortType,
 }: {
   joystickPosition: { x: number, y: number },
   itemCount: number,
   setIndex: (index: number | ((index: number) => number)) => void,
-  onSetIndex: (index: number) => void,
   numRows?: number,
   numColumns?: number,
   useAcceleration?: boolean,
   acceleration?: number,
   minStepDuration?: number,
+  sortType?: SortType,
 }) {
+  const [hasMounted, setHasMounted] = useState(false);
+
   const intervalRef = useRef<number | null>(null);
   const timeoutRef = useRef<number | null>(null);
   const axisRef = useRef<Axis>("x");
@@ -69,7 +72,6 @@ export function useJoystickGridNavigation({
         nextIndex = clamp(nextIndex, 0, itemCount - 1);
       }
 
-      onSetIndex(nextIndex);
       return nextIndex;
     });
   };
@@ -91,7 +93,6 @@ export function useJoystickGridNavigation({
         }
       }
 
-      onSetIndex(nextIndex);
       return nextIndex;
     });
   };
@@ -118,6 +119,14 @@ export function useJoystickGridNavigation({
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     if (intervalRef.current) clearTimeout(intervalRef.current);
   };
+
+  useEffect(() => {
+    if (!hasMounted) {
+      setHasMounted(true);
+      return;
+    }
+    setIndex(0);
+  }, [sortType]);
 
   useEffect(() => {
     const axis = getAxis();
