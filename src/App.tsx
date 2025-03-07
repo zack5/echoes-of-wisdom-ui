@@ -9,6 +9,7 @@ import About from "./pages/About";
 import NotFound from "./pages/NotFound";
 import Layout from "./components/Layout";
 import SelectorChoice from "./components/SelectorChoice";
+import SelectorControllerCrossMedia from './selectors/SelectorControllerCrossMedia';
 import SelectorControllerOriginal from './selectors/SelectorControllerOriginal';
 import SelectorControllerScrollingGrid from "./selectors/SelectorControllerScrollingGrid";
 import SelectorControllerSpiral from "./selectors/SelectorControllerSpiral";
@@ -28,7 +29,7 @@ function App() {
                     <Route path="acceleration" element={<SelectorControllerOriginal useAcceleration={true} />} />
                     <Route path="scrolling-grid" element={<SelectorControllerScrollingGrid />} />
                     <Route path="tabbed-grid" element={<SelectorControllerTabbedGrid />} />
-                    <Route path="bar" element={<SelectorControllerSpiral />} />
+                    <Route path="bar" element={<SelectorControllerCrossMedia />} />
                     <Route path="spiral" element={<SelectorControllerSpiral />} />
                   </Route>
                   <Route path="about" element={<About />} />

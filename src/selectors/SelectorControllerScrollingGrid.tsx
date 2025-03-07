@@ -69,7 +69,7 @@ export default function SelectorControllerScrollingGrid() {
     <>
       <motion.div
         className="scrolling-grid-container"
-        key={`echoes-container-${sortType}`}
+        
         style={{
           display: "grid",
           gridTemplateColumns: `repeat(${GRID_COLUMNS}, ${WIDTH}px)`,
@@ -98,7 +98,6 @@ export default function SelectorControllerScrollingGrid() {
       />
       <motion.div
         className="selected"
-        key={`selected-${sortType}`}
         style={{
           position: "absolute",
           width: WIDTH,
