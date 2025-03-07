@@ -3,12 +3,12 @@ import { useEffect } from "react";
 import { useNavigationData } from "../contexts/ContextNavigation";
 import { useSelectorData } from "../contexts/ContextSelector";
 import EchoTitle from "../components/EchoTitle";
+import KeyButton from "../components/KeyButton";
 import PropertySlider from "../components/PropertySlider";
 import SelectorLayout from "../components/SelectorLayout";
 import SortDisplay from "../components/SortDisplay";
 
 import SelectorOptionSpiral from "../selector_options/SelectorOptionSpiral";
-
 export default function SelectorControllerSpiral() {
   const navigationData = useNavigationData();
   const selectorData = useSelectorData();
@@ -62,6 +62,35 @@ export default function SelectorControllerSpiral() {
     }
   }, [joystickPosition, directionCount, selectedEchoId, setSelectedEchoId, sortedEchoIds, getEchoIndex]);
 
+  const joystickActive = joystickPosition.x !== 0 || joystickPosition.y !== 0;
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "e") {
+        const newIndex = selectedItem + directionCount;
+        if (joystickActive && 0 <= newIndex && newIndex < itemCount) {
+          setSelectedEchoId(sortedEchoIds[newIndex]);
+        } else if (!joystickActive) {
+          const clamped = Math.max(0, Math.min(newIndex, itemCount - 1));
+          setSelectedEchoId(sortedEchoIds[clamped]);
+        }
+      } else if (event.key === "q") {
+        const newIndex = selectedItem - directionCount;
+        if (joystickActive && 0 <= newIndex && newIndex < itemCount) {
+          setSelectedEchoId(sortedEchoIds[newIndex]);
+        } else if (!joystickActive) {
+          const clamped = Math.max(0, Math.min(newIndex, itemCount - 1));
+          setSelectedEchoId(sortedEchoIds[clamped]);
+        }
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [joystickActive, selectedItem, directionCount, itemCount, setSelectedEchoId, sortedEchoIds]);
+
   const parametersElements = (
     <>
       <PropertySlider
@@ -109,6 +138,10 @@ export default function SelectorControllerSpiral() {
           bottom: "-430px",
         }}
       />
+      <div className="spiral-nav uses-tab-left-right-actions selector-option tab-pips-container" style={{ top: "430px" }}>
+        <div><span>Down a level:</span><KeyButton className="in-game-key-button" action="q" /></div>
+        <div><span>Up a level:  </span><KeyButton className="in-game-key-button" action="e" /></div>
+      </div>
       <SortDisplay
         extraStyles={{
           bottom: "-582px",

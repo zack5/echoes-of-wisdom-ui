@@ -11,8 +11,8 @@ function triggerButton(button: string) {
   window.dispatchEvent(event);
 }
 
-export default function KeyButton({ action, disabled=false }: { action: string, disabled?: boolean }) {
+export default function KeyButton({ action, disabled=false, className="" }: { action: string, disabled?: boolean, className?: string }) {
   return (
-    <button onClick={() => triggerButton(action)} disabled={disabled}>{action.toLocaleUpperCase()}</button>
+    <button onClick={() => triggerButton(action)} disabled={disabled} className={className}>{action.toLocaleUpperCase()}</button>
   );
 }

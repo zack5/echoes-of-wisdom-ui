@@ -132,11 +132,11 @@ export default function SelectorControllerTabbedGrid() {
         }}
       />
       <div className="tab-nav uses-tab-left-right-actions" style={{ top: `${-332 + componentYOffset}px` }}>
-        <KeyButton action="q" />
+        <KeyButton action="q" className="in-game-key-button" />
         <div className="selector-option tab-pips-container">
           {tabPips}
         </div>
-        <KeyButton action="e" />
+        <KeyButton action="e" className="in-game-key-button" />
       </div>
       <motion.div
         className="selected"
