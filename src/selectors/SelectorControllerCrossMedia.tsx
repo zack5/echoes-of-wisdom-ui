@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { motion } from "framer-motion";
 
 import { useEchoesData } from "../contexts/ContextEchoes";
@@ -11,7 +11,8 @@ import SelectorLayout from "../components/SelectorLayout";
 import SelectorOption from "../selector_options/SelectorOption";
 import { WIDTH, HEIGHT, GAP } from "../selector_options/SelectorOptionConstants";
 
-import { useJoystickCrossMediaBarNavigation, CrossMediaBarNavigationData } from "../hooks/useJoystickCrossMediaBarNavigation";
+import { useJoystickCrossMediaBarNavigation } from "../hooks/useJoystickCrossMediaBarNavigation";
+
 export default function SelectorControllerCrossMedia() {
   const echoesData = useEchoesData();
   const navigationData = useNavigationData();
@@ -21,7 +22,7 @@ export default function SelectorControllerCrossMedia() {
   }
 
   const { joystickPosition } = navigationData;
-  const { setSelectedEchoId } = selectorData;
+  const { selectedEchoId, setSelectedEchoId, crossMediaBarNavigationData, setCrossMediaBarNavigationData } = selectorData;
 
   const typeSet = useMemo(
     () => Array.from(new Set(Object.values(echoesData).map(echo => echo.type)))
@@ -39,15 +40,23 @@ export default function SelectorControllerCrossMedia() {
   const typeCounts = useMemo(() => {
     return echoIdsPerType.map(ids => ids.length);
   }, [echoIdsPerType]);
-
-  const [crossMediaBarNavigationData, setCrossMediaBarNavigationData] = useState<CrossMediaBarNavigationData>(() => {
-    return {
-      columnIndex: 0,
-      typeIndexes: echoIdsPerType.map(() => 0),
-    };
-  });
-
-  const numColumns = echoIdsPerType.length;
+  
+  const remountVisuals = useRef(0);
+  useEffect(() => {
+    remountVisuals.current++;
+    const colIndex = typeSet.indexOf(echoesData[selectedEchoId].type);
+    const typeIndex = echoIdsPerType[colIndex].indexOf(selectedEchoId);
+    setCrossMediaBarNavigationData((prev) => ({
+      columnIndex: colIndex,
+      typeIndexes: prev.typeIndexes.map((_, i) => i === colIndex ? typeIndex : _),
+    }));
+  }, []);
+  
+  useEffect(() => {
+    const col = crossMediaBarNavigationData.columnIndex;
+    const typeIndex = crossMediaBarNavigationData.typeIndexes[col];
+    setSelectedEchoId(echoIdsPerType[col][typeIndex]);
+  }, [crossMediaBarNavigationData]);
 
   useJoystickCrossMediaBarNavigation({
     joystickPosition,
@@ -55,23 +64,18 @@ export default function SelectorControllerCrossMedia() {
     setCrossMediaBarNavigationData,
   });
 
-  useEffect(() => {
-    const col = crossMediaBarNavigationData.columnIndex;
-    const typeIndex = crossMediaBarNavigationData.typeIndexes[col];
-    setSelectedEchoId(echoIdsPerType[col][typeIndex]);
-  }, [crossMediaBarNavigationData]);
-
   const transition = {
     duration: 0.3,
     ease: "easeOut",
   }
 
   const visibleWindow = 15;
+  const numColumns = typeSet.length;
 
   const elements = echoIdsPerType
     .map((echoIds, colIndex) => {
       if (Math.abs(colIndex - crossMediaBarNavigationData.columnIndex) > visibleWindow) {
-        return <div/>;
+        return <div key={typeSet[colIndex]}/>;
       }
 
       const y = crossMediaBarNavigationData.typeIndexes[colIndex]
@@ -80,7 +84,7 @@ export default function SelectorControllerCrossMedia() {
       const echoElements = echoIds.map((echoId) => <SelectorOption key={echoId} echoId={echoId} />);
       
       return (
-        <div>
+        <div key={typeSet[colIndex]}>
           <motion.div 
             className="echo-cross-media-vertical-container"
             style={{
@@ -108,6 +112,7 @@ export default function SelectorControllerCrossMedia() {
   const menuElements = (
     <>
       <motion.div
+        key={remountVisuals.current}
         className="cross-media-grid-container"
         style={{
           display: "grid",

@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useMemo, useEffect, useRef } from 'react';
 import { useEchoesData } from './ContextEchoes';
-import { SortType } from '../utils/types';
+import { SortType, CrossMediaBarNavigationData } from '../utils/types';
 
 interface SelectorContextType {
   itemCount: number;
@@ -24,6 +24,8 @@ interface SelectorContextType {
   getEchoId: (index: number) => string;
   sortType: SortType;
   setSortType: (sortType: SortType | ((prev: SortType) => SortType)) => void;
+  crossMediaBarNavigationData: CrossMediaBarNavigationData;
+  setCrossMediaBarNavigationData: (crossMediaBarNavigationData: CrossMediaBarNavigationData | ((prev: CrossMediaBarNavigationData) => CrossMediaBarNavigationData)) => void;
 }
 
 const SelectorContext = createContext<SelectorContextType | null>(null);
@@ -52,7 +54,11 @@ export function SelectorProvider({ children }: { children: React.ReactNode }) {
   const [sortType, setSortType] = useState<SortType>(SortType.Type);
   const sortedEchoIds = useRef(useMemo(() => Object.keys(echoes).sort(sortFunctions[sortType]), [echoes, sortType]));
   const [selectedEchoId, setSelectedEchoId] = useState<string>(() => sortedEchoIds.current[0]);
-  
+  const [crossMediaBarNavigationData, setCrossMediaBarNavigationData] = useState<CrossMediaBarNavigationData>(() => ({
+    columnIndex: 0,
+    typeIndexes: Array.from(new Set(Object.values(echoes).map(echo => echo.type))).map(() => 0),
+  }));
+
   function getEchoIndex(echoId: string) {
     return sortedEchoIds.current.indexOf(echoId);
   }
@@ -107,6 +113,8 @@ export function SelectorProvider({ children }: { children: React.ReactNode }) {
       getEchoId,
       sortType,
       setSortType,
+      crossMediaBarNavigationData,
+      setCrossMediaBarNavigationData,
     }}>
       <>
         {children}

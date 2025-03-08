@@ -17,3 +17,8 @@ export enum SortType {
     Cost = "Cost",
     Type = "Type",
 }
+
+export interface CrossMediaBarNavigationData {
+    columnIndex: number;
+    typeIndexes: number[];
+}

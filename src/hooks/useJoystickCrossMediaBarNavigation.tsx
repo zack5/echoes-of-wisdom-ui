@@ -1,9 +1,6 @@
 import { useJoystickNavigation, Axis } from "./useJoystickNavigation";
 
-export interface CrossMediaBarNavigationData {
-  columnIndex: number;
-  typeIndexes: number[];
-}
+import { CrossMediaBarNavigationData } from "../utils/types";
 
 export function useJoystickCrossMediaBarNavigation({
   joystickPosition,
