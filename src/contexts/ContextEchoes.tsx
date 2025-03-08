@@ -16,7 +16,7 @@ export function EchoesProvider({ children }: { children: React.ReactNode }) {
     result[echo.name] = {
       category: echo.category,
       cost: echo.cost,
-      image: `src/assets/echoes/128px-EoW_${echo.name.replace(/ /g, "_")}_Icon.png`,
+      image: `/echoes/128px-EoW_${echo.name.replace(/ /g, "_")}_Icon.png`,
       name: echo.name,
       type: echo.type,
       lastUsed: Math.random(),
