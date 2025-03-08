@@ -63,7 +63,7 @@ export default function Analysis() {
           rating={2} 
           description="Acceleration mediates the issues a little, but it can get a little unweildy." 
           thumbnail={thumbnailOriginal} 
-          link="/" 
+          link="/acceleration" 
         />
 
         <AnalysisItem 
@@ -71,7 +71,7 @@ export default function Analysis() {
           rating={5} 
           description="I find the two-dimensional grid to be a huge improvement. With many more elements on the screen at once, finding the one you want is much more straightforward. It is interesting that Echoes of Wisdom took this approach this in the main menu echoes view, but elected not to do so in the quick bar. I don't think showing more elements increases the cognitive load too much to be overwhelming during combat." 
           thumbnail={thumbnailScrollingGrid} 
-          link="/" 
+          link="/scrolling-grid" 
         />
 
         <AnalysisItem 
@@ -79,7 +79,7 @@ export default function Analysis() {
           rating={4} 
           description="The tabbed grid is a pretty convenient way to organize the echoes, and given enough playtime with it I feel like I would become accustomed to which echoes live in which tab. However, while it was a fun sorting exercise, I think the arbitrary nature of which echo belongs to which category makes this solution inferior to the scrolling grid." 
           thumbnail={thumbnailTabbedGrid} 
-          link="/" 
+          link="/tabbed-grid" 
         />
 
         <AnalysisItem 
@@ -87,15 +87,15 @@ export default function Analysis() {
           rating={3} 
           description='Making the categories for the cross media bar approach was an interesting challenge. There are some echoes that have clear associations (Lizalfos, Lizalfos Lv. 2, Lizalfos Lv. 3), but when I only grouped based on those the horizontal length was still daunting. I think the version I present here which includes some more abstract groupings (Snowball and Spiked Roller are grouped together as "things that roll") preserves enough semantic meaning to still be a meaningful categorization system. I tried to keep at most three elements in a column so that they would always be onscreen. Still, much like the tabbed grid I dislike that the categories are ultimately arbitrary and not tied to gameplay.'
           thumbnail={thumbnailCrossMediaBar} 
-          link="/" 
+          link="/bar" 
         />
 
         <AnalysisItem 
-          title="Spiral Nav" 
+          title="Spiral" 
           rating={2} 
           description="The spiral is a dark horse idea with some attractive qualities. I like that it parallels the double helix motif present in the wand Zelda uses to conjure echoes, and it is able to display more elements on the screen at once than the original version, but I am fairly confident that playing through the game with this method would result in substantial thumb fatigue. I added support for jumping up and down a level with the trigger buttons which helps a little, but it still doesn't feel as intuitive as a simple grid." 
           thumbnail={thumbnailSpiral} 
-          link="/" 
+          link="/spiral" 
         />
         
 

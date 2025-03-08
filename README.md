@@ -1,3 +1,5 @@
-I loved playing Echoes of Wisdom, but I did not love linearly scrolling through all 127 echoes every time I needed to find one! 
+Try it for yourself at [https://echoes-of-wisdom-ui.netlify.app/](https://echoes-of-wisdom-ui.netlify.app/)!
 
-Inspired by the Exploration by Game Maker's Toolkit: https://www.youtube.com/watch?v=e4vsgC41bYg
+Echoes of Wisdom is a 2024 action-adventure game on the Nintendo Switch. The game's central mechanic involves spawning creatures and objects—"echoes"—to solve puzzles and beat enemies. I had a blast playing Echoes of Wisdom, but the menu for selecting which echo to use was a definite sticking point. Throughout your quest you can collect up to 127 echoes, and the main method of using one is by finding it in a one-dimensional list. You may sort by “Type” and “Most Recently Used” which helps, but I believe other options could provide a better experience and match the high bar of polish set by the rest of the game. Exploring alternatives in this project was immensely satisfying.
+
+I implemented these prototypes using TypeScript and React. This project was inspired by the fantastic video by Game Maker's Toolkit, who built many of these prototypes in Unity: [Can I fix Zelda's UI using Unity?](https://www.youtube.com/watch?v=e4vsgC41bYg)
