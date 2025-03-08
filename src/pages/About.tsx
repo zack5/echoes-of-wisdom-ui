@@ -5,7 +5,7 @@ import pokeball from "../assets/about/pokeball.png";
 
 export default function About() {
   return (
-    <div className="about-page-container">
+    <div className="document-page-container">
       <h1>
         About
       </h1>
@@ -29,7 +29,7 @@ export default function About() {
           </ul>
         </div>
       </div>
-      <p>I loved playing Echoes of Wisdom, but I did not love linearly scrolling through all 127 echoes every time I needed to find the one I wanted! Exploring other alternatives in this project was immensely satisfying.</p>
+      <p>Echoes of Wisdom is a 2024 action-adventure game on the Nintendo Switch. The game's central mechanic involves spawning creatures and objects—"echoes"—to solve puzzles and beat enemies. I had a blast playing Echoes of Wisdom, but the menu for selecting which echo to use was a definite sticking point. Throughout your quest you can collect up to 127 echoes, and the main method of using one is by finding it in a one-dimensional list. You may sort by “Type” and “Most Recently Used” which helps, but I believe other options could provide a better experience and match the high bar of polish set by the rest of the game. Exploring alternatives in this project was immensely satisfying.</p>
 
       <p>I implemented these prototypes using TypeScript and React. This project was inspired by the fantastic video by Game Maker's Toolkit, who built many of these prototypes in Unity: <a href="https://www.youtube.com/watch?v=e4vsgC41bYg">Can I fix Zelda's UI using Unity?</a></p>
 

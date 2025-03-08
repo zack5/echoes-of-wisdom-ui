@@ -4,7 +4,9 @@ import { getActiveNavLinkStyles } from '../utils/utils'
 
 export default function Header() {
   const {pathname} = useLocation();
-  const isAboutPage = pathname === "/about";
+  const isInPrototype = pathname !== "/about"
+    && pathname !== "/references"
+    && pathname !== "/analysis";
 
   return (
     <header>
@@ -14,8 +16,10 @@ export default function Header() {
         </Link>
       </div>
       <div className='nav-container'>
-        <NavLink to="/" style={() => getActiveNavLinkStyles({ isActive: !isAboutPage })} end>Prototypes</NavLink>
-        <NavLink to="/about" style={() => getActiveNavLinkStyles({ isActive: isAboutPage })}>About</NavLink>
+        <NavLink to="/" style={() => getActiveNavLinkStyles({ isActive: isInPrototype })} end>Prototypes</NavLink>
+        <NavLink to="/references" style={getActiveNavLinkStyles}>References</NavLink>
+        <NavLink to="/analysis" style={getActiveNavLinkStyles}>Analysis</NavLink>
+        <NavLink to="/about" style={getActiveNavLinkStyles}>About</NavLink>
       </div>
     </header>
   );

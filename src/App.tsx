@@ -6,8 +6,10 @@ import { SelectorProvider } from "./contexts/ContextSelector";
 import { EchoesProvider } from "./contexts/ContextEchoes";
 import { NavigationProvider } from "./contexts/ContextNavigation";
 import About from "./pages/About";
+import Analysis from "./pages/Analysis";
 import NotFound from "./pages/NotFound";
 import Layout from "./components/Layout";
+import ReferenceFootage from "./pages/ReferenceFootage";
 import SelectorChoice from "./components/SelectorChoice";
 import SelectorControllerCrossMedia from './selectors/SelectorControllerCrossMedia';
 import SelectorControllerOriginal from './selectors/SelectorControllerOriginal';
@@ -32,6 +34,8 @@ function App() {
                     <Route path="bar" element={<SelectorControllerCrossMedia />} />
                     <Route path="spiral" element={<SelectorControllerSpiral />} />
                   </Route>
+                  <Route path="references" element={<ReferenceFootage />} />
+                  <Route path="analysis" element={<Analysis />} />
                   <Route path="about" element={<About />} />
                   <Route path="*" element={<NotFound />} />
                 </Route>
