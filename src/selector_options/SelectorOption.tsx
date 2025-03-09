@@ -1,8 +1,12 @@
+import { useMemo } from "react";
+
 import { useEchoesData } from "../contexts/ContextEchoes";
 import { useSelectorData } from "../contexts/ContextSelector";
 
-import costTriangle from "../assets/textures/cost-triangle.png";
 import { WIDTH, HEIGHT } from "./SelectorOptionConstants";
+
+import costTriangle from "../assets/textures/cost-triangle.png";
+
 export default function SelectorOption({ echoId, extraClassNames, extraStyles }
   : {
     echoId: string,
@@ -17,13 +21,13 @@ export default function SelectorOption({ echoId, extraClassNames, extraStyles }
   }
 
   const cost = echoes[echoId].cost;
-  const costTriangleElements = Array.from({ length: cost }, (_, index) => {
+  const costTriangleElements = useMemo(() => Array.from({ length: cost }, (_, index) => {
     const rotation = (cost - 2 * index - 1) * -7;
     const yOffset = 0.008 * (Math.abs(rotation) ** 2.02);
     const margin = -7 - 0.5 * (Math.abs(cost - 2 * index - 1));
     return (
       <img 
-        key={`${echoes[echoId].name}-cost-triangle-${index}`}
+        key={`cost-triangle-${index}`}
         src={costTriangle} 
         alt="triangle" 
         style={{ 
@@ -32,7 +36,7 @@ export default function SelectorOption({ echoId, extraClassNames, extraStyles }
         }} 
       />
     );
-  });
+  }), [cost]);
 
   return (
     <div key={echoes[echoId].name}
