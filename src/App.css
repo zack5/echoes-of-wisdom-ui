@@ -42,14 +42,9 @@ body {
 
 h1,
 h2,
-h3 {
-  margin-top: 0;
-  font-family: 'STHeiti Medium', sans-serif;
-}
-
+h3,
 p {
   margin-top: 0;
-  font-family: 'STHeiti Light', sans-serif;
 }
 
 h2 {
@@ -474,6 +469,8 @@ button:hover {
   
   display: flex;
   flex-direction: column;
+
+  font-family: 'Roboto', sans-serif;
 }
 
 
@@ -520,7 +517,7 @@ button:hover {
 .star-empty {
   height: 1rem;
   filter: blur(1px) grayscale(1);
-  opacity: 0.5;
+  opacity: 0.2;
 }
 /* ABOUT */
 
