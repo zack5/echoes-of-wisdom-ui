@@ -7,19 +7,21 @@ interface NavigationContextType {
 
 const NavigationContext = createContext<NavigationContextType | null>(null);
 
+const JOYSTICK_MOVE_RADIUS = 50;
+
 export function NavigationProvider({ children }: { children: React.ReactNode }) {
   const [joystickPosition, setJoystickPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "ArrowRight" || event.key === "d") {
-        setJoystickPosition({ x: 100, y: 0 });
+        setJoystickPosition({ x: JOYSTICK_MOVE_RADIUS, y: 0 });
       } else if (event.key === "ArrowLeft" || event.key === "a") {
-        setJoystickPosition({ x: -100, y: 0 });
+        setJoystickPosition({ x: -JOYSTICK_MOVE_RADIUS, y: 0 });
       } else if (event.key === "ArrowUp" || event.key === "w") {
-        setJoystickPosition({ x: 0, y: -100 });
+        setJoystickPosition({ x: 0, y: -JOYSTICK_MOVE_RADIUS });
       } else if (event.key === "ArrowDown" || event.key === "s") {
-        setJoystickPosition({ x: 0, y: 100 });
+        setJoystickPosition({ x: 0, y: JOYSTICK_MOVE_RADIUS });
       }
     };
 
