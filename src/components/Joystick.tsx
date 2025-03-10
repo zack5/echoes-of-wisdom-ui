@@ -10,10 +10,34 @@ export default function Joystick({ joystickPosition, setJoystickPosition }: { jo
   const rotateY = useTransform(x, [-100, 100], [-60, 60]);
 
   useEffect(() => {
-    if (!isDragging) {
-      x.set(joystickPosition.x);
-      y.set(joystickPosition.y);
-    }
+    let animationFrameId: number;
+    const threshold = 0.5;
+
+    const animate = () => {
+      if (!isDragging) {
+        const currentX = x.get();
+        const currentY = y.get();
+        const deltaX = joystickPosition.x - currentX;
+        const deltaY = joystickPosition.y - currentY;
+
+        if (Math.abs(deltaX) < threshold && Math.abs(deltaY) < threshold) {
+          x.set(joystickPosition.x);
+          y.set(joystickPosition.y);
+          return;
+        }
+
+        const newX = currentX + deltaX * 0.3;
+        const newY = currentY + deltaY * 0.3;
+        x.set(newX);
+        y.set(newY);
+
+        animationFrameId = requestAnimationFrame(animate);
+      }
+    };
+
+    animate();
+
+    return () => cancelAnimationFrame(animationFrameId);
   }, [joystickPosition, x, y, isDragging]);
 
   return (
@@ -23,6 +47,8 @@ export default function Joystick({ joystickPosition, setJoystickPosition }: { jo
         style={{
           rotateX,
           rotateY,
+          x,
+          y,
         }}
         drag
         dragConstraints={{ top: 0, right: 0, bottom: 0, left: 0 }}
@@ -38,8 +64,6 @@ export default function Joystick({ joystickPosition, setJoystickPosition }: { jo
           setIsDragging(false);
           setJoystickPosition({ x: 0, y: 0 });
         }}
-        animate={isDragging ? undefined : { x: joystickPosition.x, y: joystickPosition.y }}
-        transition={isDragging ? { duration: 0.1 } : undefined}
       />
     </div>
   );
